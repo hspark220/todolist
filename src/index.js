@@ -1,2 +1,2 @@
-import todo from './todo.js';
+import manageTodo from './manageTodo';
 
