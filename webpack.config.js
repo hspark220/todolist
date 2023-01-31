@@ -1,11 +1,16 @@
 const path = require('path');
-const HtmlWEbpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { Template } = require('webpack');
 
 module.exports = {
+    mode: 'development',
     entry: {
         index: './src/index.js',
+        todo: './src/todo.js',
+    },
+    devtool: 'inline-source-map',
+    devServer: {
+        static: './dist',
     },
     plugins: [new HtmlWebpackPlugin({
         template: './src/template.html',
