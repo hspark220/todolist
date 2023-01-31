@@ -1,35 +1,35 @@
-import todo from './todo.js';
+import todoStorage from './todoStorage.js';
 
 const manageTodo = () => {
     //constructor?
-    const createTodo = (title, description, dueDate, priorty, checklist) => {
-        return todo(title, description, dueDate, priorty, checklist);
+    const createTodo = (id, title, description, dueDate, priorty, checklist) => {
+        return todo(id, title, description, dueDate, priorty, checklist);
     }
 
     //getters
-    const getTitle = todo => {
-        return todo.getTitle();
+    const getTitle = key => {
+        return todoStorage.retrieveTodo(key);
     }
 
-    const getDescription = todo => {
-        return todo.getDescription();
+    const getDescription = key => {
+        return todoStorage.retrieveTodo(key);
     }
 
-    const getDueDate = todo => {
-        return todo.getDueDate();
+    const getDueDate = key => {
+        return todoStorage.retrieveTodo(key);
     }
 
-    const getPriorty = todo => {
-        return todo.getPriorty();
+    const getPriorty = key => {
+        return todoStorage.retrieveTodo(key);
     }
 
-    const getChecklist = todo => {
-        return todo.getChecklist();
+    const getChecklist = key => {
+        return todoStorage.retrieveTodo(key);
     }
 
     //changers
-    const  changeTitle = (todo, newTitle) => {
-        todo.setTitle(newTitle);
+    const  changeTitle = (key, newTitle) => {
+        
     }
 
     const changeDescription = (todo, newDescription) => {
@@ -52,7 +52,7 @@ const manageTodo = () => {
         //constructor
         createTodo,
         //getter
-        getTitle, getDescription, getDueDate, getPriorty, getChecklist,
+        getId, getTitle, getDescription, getDueDate, getPriorty, getChecklist,
         //changer
         changeTitle, changeDescription, changeDueDate, changePriorty, changeChecklist,
 
