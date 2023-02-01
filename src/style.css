@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,900&display=swap');
+
+* {
+    font-family: Roboto, san-serif;
+}
+
+/* 
+template layout
+*/
+body {
+    height: 100vh;
+    display: grid;
+    grid-template: clamp(100px, 20%, 200px) clamp(100px, 20%, 200px) 1fr / 1fr max(300px, 50%) 1fr;
+    grid-template-areas:
+    "project title title"
+    "project details details"
+    "project todolist date";
+}
+
+.title {
+    grid-area: title;
+    border: solid;
+}
+.projects {
+    grid-area: project;
+    border: solid;
+}
+.details {
+    grid-area: details;
+    border: solid;
+}
+.todolist {
+    grid-area: todolist;
+    border: solid;
+}
+.date {
+    grid-area: date;
+    border: solid;
+}

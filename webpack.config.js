@@ -12,8 +12,9 @@ module.exports = {
     devServer: {
         static: './dist',
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: './src/template.html',
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/template.html',
         })
     ],
     output: {
@@ -32,5 +33,8 @@ module.exports = {
                 type: 'asset/resource',
             },
         ],
+    },
+    optimization: {
+        runtimeChunk: 'single',
     },
 };
