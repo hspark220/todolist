@@ -26,7 +26,7 @@ const todoStorage = (() => {
     //retrieve
     const retrieveTodo = key => {
         try {
-            const todoString = localStorage.key(key);
+            const todoString = localStorage.getItem(localStorage.key(key));
             const todoArray = todoString.split(':,:');
             return todo(todoArray[0], todoArray[1], todoArray[2], todoArray[3], todoArray[4]);
         } catch {

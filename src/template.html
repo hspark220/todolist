@@ -12,5 +12,40 @@
     <div class="details"></div>
     <div class="todolist"></div>
     <div class="date"></div>
+    <div class="create-form">
+        <label for="create-title">Title:</label>
+        <input type="text" name="title" id="create-title">
+        <label for="create-description">Description:</label>
+        <input type="text" name="description" id="create-description">
+        <label for="create-dueDate">Due Date:</label>
+        <input type="date" name="dueDate" id="create-dueDate">
+        <label for="create-priorty">Priorty</label>
+        <select name="priorty" id="create-priorty">
+            <optgroup>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </optgroup>
+        </select>
+        <input type="button" value="submit" id="create-submit">
+
+    </div>
+    <div class="edit-form">
+        <label for="edit-title">Title:</label>
+        <input type="text" name="title" id="edit-title">
+        <label for="edit-description">Description:</label>
+        <input type="text" name="description" id="edit-description">
+        <label for="edit-dueDate">Due Date:</label>
+        <input type="date" name="dueDate" id="edit-dueDate">
+        <label for="edit-priorty">Priorty</label>
+        <select name="priorty" id="edit-priorty">
+            <optgroup>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </optgroup>
+        </select>
+        <input type="button" value="submit" id="edit-submit">
+    </div>
 </body>
 </html>
