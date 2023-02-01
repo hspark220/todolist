@@ -7,6 +7,10 @@ const manageTodo = () => {
     }
 
     //getters
+    const getId = key => {
+        return todoStorage.retrieveId(key);
+    }
+
     const getTitle = key => {
         return todoStorage.retrieveTodo(key);
     }
@@ -29,24 +33,25 @@ const manageTodo = () => {
 
     //changers
     const  changeTitle = (key, newTitle) => {
-        
+        todoStorage.updateTitle(key, newTitle);
     }
 
-    const changeDescription = (todo, newDescription) => {
-        todo.setDescription(newDescription);
+    const changeDescription = (key, newDescription) => {
+        todoStorage.updateDescription(key, newDescription);
     }
 
-    const changeDueDate = (todo, newDueDate) => {
-        todo.setDueDate(newDueDate);
+    const changeDueDate = (key, newDueDate) => {
+        todoStorage.updateDueDate(key, newDueDate);
     }
 
-    const changePriorty = (todo, newPriorty) => {
-        todo.setPriorty(newPriorty);
+    const changePriorty = (key, newPriorty) => {
+        todoStorage.updatePriorty(key, newPriorty);
     }
 
-    const changeChecklist = (todo, newChecklist) => {
-        todo.setChecklist(newChecklist);
+    const changeChecklist = (key, newChecklist) => {
+        todoStorage.updateChecklist(key, newChecklist);
     }
+
 
     return {
         //constructor
@@ -56,8 +61,7 @@ const manageTodo = () => {
         //changer
         changeTitle, changeDescription, changeDueDate, changePriorty, changeChecklist,
 
-    
     }
 }
 
-export default manageTodo;
+export default manageTodo();

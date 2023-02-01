@@ -26,7 +26,7 @@ const todoStorage = () => {
     }
 
     const retrieveTitle = key => {
-        return retrieveTodo(key).getName();
+        return retrieveTodo(key).getTitle();
     }
 
     const retrieveDescription = key => {
@@ -50,12 +50,30 @@ const todoStorage = () => {
         retrieveTodo(key).setTitle(newTitle);
     }
 
+    const updateDescription = (key, newDescription) => {
+        retrieveTodo(key).setDescription(newDescription);
+    }
+
+    const updateDueDate = (key, newDueDate) => {
+        retrieveTodo(key).setDueDate(newDueDate);
+    }
+
+    const updatePriorty = (key, newPriorty) => {
+        retrieveTodo(key).setPriorty(newPriorty);
+    }
+
+    const updateChecklist = (key, newChecklist) => {
+        retrieveTodo(key).setChecklist(newChecklist);
+    }
+
 
     return {
         //store
         storeTodo,
         //retrieve
-        retrieveTodo, retrieveTitle, retrieveDescription, retrieveDueDate, retrievePriorty, retrieveChecklist
+        retrieveTodo, retrieveTitle, retrieveDescription, retrieveDueDate, retrievePriorty, retrieveChecklist,
+        //update
+        updateTitle, updateDescription, updateDueDate, updatePriorty, updateChecklist
     }
 
 }
