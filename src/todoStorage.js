@@ -13,6 +13,11 @@ const todoStorage = () => {
         localStorage.setItem(todo.getId, _stringTodo(todo));
     }
 
+    //delete
+    const deleteTodo = key => {
+        localStorage.removeItem(key);    
+    }
+
 
     //retrieve
     const retrieveTodo = key => {

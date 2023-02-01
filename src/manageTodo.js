@@ -6,6 +6,10 @@ const manageTodo = () => {
         todoStorage.storeTodo(id, title, description, dueDate, priorty, checklist);
     }
 
+    const removeTodo = key => {
+        todoStorage.deleteTodo(key);
+    }
+
     //getters
     const getId = key => {
         return todoStorage.retrieveId(key);
@@ -54,12 +58,12 @@ const manageTodo = () => {
 
 
     return {
-        //constructor
-        createTodo,
+        //constructor and remover?
+        createTodo, removeTodo,
         //getter
         getId, getTitle, getDescription, getDueDate, getPriorty, getChecklist,
         //changer
-        changeTitle, changeDescription, changeDueDate, changePriorty, changeChecklist,
+        changeTitle, changeDescription, changeDueDate, changePriorty, changeChecklist
 
     }
 }
