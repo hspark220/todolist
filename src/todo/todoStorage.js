@@ -19,12 +19,16 @@ const todoStorage = (() => {
         localStorage.removeItem(key);    
     }
 
-
     //retrieve
     const retrieveTodo = key => {
-        const todoString = localStorage.getItem(key);
-        const todoArray = todoString.split(':,:');
-        return todo(key, todoArray[0], todoArray[1], todoArray[2], todoArray[3], todoArray[4]);
+        try {
+            const todoString = localStorage.getItem(key);
+            const todoArray = todoString.split(':,:');
+            return todo(key, todoArray[0], todoArray[1], todoArray[2], todoArray[3], todoArray[4]);
+        } catch {
+            return null;
+        }
+        
     }
 
     const retrieveId = key => {

@@ -4,7 +4,7 @@ const manageTodo = (() => {
     //constructor?
     const createTodo = (id, title, description, dueDate, priorty, checklist) => {
         todoStorage.storeTodo(id, title, description, dueDate, priorty, checklist);
-        return todo(id, title, description, dueDate, priorty, checklist);
+        
     }
 
     const removeTodo = key => {
@@ -12,6 +12,10 @@ const manageTodo = (() => {
     }
 
     //getters
+    const getTodo = key => {
+        return todoStorage.retrieveTodo(key);
+    }
+
     const getId = key => {
         return todoStorage.retrieveId(key);
     }
@@ -57,12 +61,11 @@ const manageTodo = (() => {
         todoStorage.updateChecklist(key, newChecklist);
     }
 
-
     return {
         //constructor and remover?
         createTodo, removeTodo,
         //getter
-        getId, getTitle, getDescription, getDueDate, getPriorty, getChecklist,
+        getTodo, getId, getTitle, getDescription, getDueDate, getPriorty, getChecklist,
         //changer
         changeTitle, changeDescription, changeDueDate, changePriorty, changeChecklist
 

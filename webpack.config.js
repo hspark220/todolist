@@ -7,6 +7,7 @@ module.exports = {
     entry: {
         index: './src/index.js',
         manageTodo: './src/manageTodo.js',
+        todolist: './src/gui/todolist.js',
     },
     devtool: 'inline-source-map',
     devServer: {
