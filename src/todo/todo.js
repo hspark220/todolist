@@ -1,8 +1,4 @@
-const todo = (id, title, description, dueDate, priorty, checklist) => {
-    // getters
-    const getId = () => {
-        return id;
-    }
+const todo = (title, description, dueDate, priorty, checklist) => {
     const getTitle = () => {
         return title;
     }
@@ -46,7 +42,7 @@ const todo = (id, title, description, dueDate, priorty, checklist) => {
 
     return {
         //getter
-        getId, getTitle, getDescription, getDueDate, getPriorty, getChecklist,
+        getTitle, getDescription, getDueDate, getPriorty, getChecklist,
         //setter
         setTitle, setDescription, setDueDate, setPriorty, setChecklist
     }

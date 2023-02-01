@@ -2,8 +2,8 @@ import todoStorage from './todo/todoStorage.js';
 
 const manageTodo = (() => {
     //constructor?
-    const createTodo = (id, title, description, dueDate, priorty, checklist) => {
-        todoStorage.storeTodo(id, title, description, dueDate, priorty, checklist);
+    const createTodo = (title, description, dueDate, priorty, checklist) => {
+        todoStorage.storeTodo(title, description, dueDate, priorty, checklist);
         
     }
 
@@ -16,7 +16,7 @@ const manageTodo = (() => {
         return todoStorage.retrieveTodo(key);
     }
 
-    const getId = key => {
+    const getId = todo => {
         return todoStorage.retrieveId(key);
     }
 

@@ -9,30 +9,26 @@ const todoStorage = (() => {
         return `${todo.getTitle()}:,:${todo.getDescription()}:,:${todo.getDueDate()}:,:${todo.getPriorty()}:,:${todo.getChecklist()}`
     }
     //store
-    const storeTodo = (id, title, description, dueDate, priorty, checklist) => {
-        const tempTodo = todo(id, title, description, dueDate, priorty, checklist);
-        localStorage.setItem(id, _stringTodo(tempTodo));
+    const storeTodo = (title, description, dueDate, priorty, checklist) => {
+        const tempTodo = todo(title, description, dueDate, priorty, checklist);
+        localStorage.setItem(title,_stringTodo(tempTodo));
     }
 
     //delete
     const deleteTodo = key => {
-        localStorage.removeItem(key);    
+        localStorage.removeItem(retrieveTitle(key));    
     }
 
     //retrieve
     const retrieveTodo = key => {
         try {
-            const todoString = localStorage.getItem(key);
+            const todoString = localStorage.key(key);
             const todoArray = todoString.split(':,:');
-            return todo(key, todoArray[0], todoArray[1], todoArray[2], todoArray[3], todoArray[4]);
+            return todo(todoArray[0], todoArray[1], todoArray[2], todoArray[3], todoArray[4]);
         } catch {
             return null;
         }
         
-    }
-
-    const retrieveId = key => {
-        return retrieveTodo(key).getId();
     }
 
     const retrieveTitle = key => {
@@ -81,7 +77,7 @@ const todoStorage = (() => {
         //store and delete
         storeTodo, deleteTodo,
         //retrieve
-        retrieveId, retrieveTodo, retrieveTitle, retrieveDescription, retrieveDueDate, retrievePriorty, retrieveChecklist,
+        retrieveTodo, retrieveTitle, retrieveDescription, retrieveDueDate, retrievePriorty, retrieveChecklist,
         //update
         updateTitle, updateDescription, updateDueDate, updatePriorty, updateChecklist
     }
