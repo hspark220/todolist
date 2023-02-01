@@ -1,9 +1,11 @@
+import todo from './todo.js';
 import todoStorage from './todoStorage.js';
 
-const manageTodo = () => {
+const manageTodo = (() => {
     //constructor?
     const createTodo = (id, title, description, dueDate, priorty, checklist) => {
         todoStorage.storeTodo(id, title, description, dueDate, priorty, checklist);
+        return todo(id, title, description, dueDate, priorty, checklist);
     }
 
     const removeTodo = key => {
@@ -16,23 +18,23 @@ const manageTodo = () => {
     }
 
     const getTitle = key => {
-        return todoStorage.retrieveTodo(key);
+        return todoStorage.retrieveTitle(key);
     }
 
     const getDescription = key => {
-        return todoStorage.retrieveTodo(key);
+        return todoStorage.retrieveDescription(key);
     }
 
     const getDueDate = key => {
-        return todoStorage.retrieveTodo(key);
+        return todoStorage.retrieveDueDate(key);
     }
 
     const getPriorty = key => {
-        return todoStorage.retrieveTodo(key);
+        return todoStorage.retrievePriorty(key);
     }
 
     const getChecklist = key => {
-        return todoStorage.retrieveTodo(key);
+        return todoStorage.retrieveChecklist(key);
     }
 
     //changers
@@ -66,6 +68,6 @@ const manageTodo = () => {
         changeTitle, changeDescription, changeDueDate, changePriorty, changeChecklist
 
     }
-}
+})();
 
-export default manageTodo();
+export default manageTodo;

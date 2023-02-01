@@ -46,7 +46,7 @@ const todo = (id, title, description, dueDate, priorty, checklist) => {
 
     return {
         //getter
-        getTitle, getDescription, getDueDate, getPriorty, getChecklist,
+        getId, getTitle, getDescription, getDueDate, getPriorty, getChecklist,
         //setter
         setTitle, setDescription, setDueDate, setPriorty, setChecklist
     }

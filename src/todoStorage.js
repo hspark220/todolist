@@ -3,14 +3,15 @@
 // 
 import todo from './todo.js';
 
-const todoStorage = () => {
+const todoStorage = (() => {
     //private methods
     const _stringTodo = todo => {
-        return `${todo.getName}:,:${todo.getDescription}:,:${todo.getDueDate}:,:${todo.getPriorty}:,:${todo.getChecklist}`
+        return `${todo.getTitle()}:,:${todo.getDescription()}:,:${todo.getDueDate()}:,:${todo.getPriorty()}:,:${todo.getChecklist()}`
     }
     //store
-    const storeTodo = todo => {
-        localStorage.setItem(todo.getId, _stringTodo(todo));
+    const storeTodo = (id, title, description, dueDate, priorty, checklist) => {
+        const tempTodo = todo(id, title, description, dueDate, priorty, checklist);
+        localStorage.setItem(id, _stringTodo(tempTodo));
     }
 
     //delete
@@ -76,11 +77,11 @@ const todoStorage = () => {
         //store
         storeTodo,
         //retrieve
-        retrieveTodo, retrieveTitle, retrieveDescription, retrieveDueDate, retrievePriorty, retrieveChecklist,
+        retrieveId, retrieveTodo, retrieveTitle, retrieveDescription, retrieveDueDate, retrievePriorty, retrieveChecklist,
         //update
         updateTitle, updateDescription, updateDueDate, updatePriorty, updateChecklist
     }
 
-}
+})();
 
 export default todoStorage;
