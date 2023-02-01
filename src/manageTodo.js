@@ -3,7 +3,7 @@ import todoStorage from './todoStorage.js';
 const manageTodo = () => {
     //constructor?
     const createTodo = (id, title, description, dueDate, priorty, checklist) => {
-        return todo(id, title, description, dueDate, priorty, checklist);
+        todoStorage.storeTodo(id, title, description, dueDate, priorty, checklist);
     }
 
     //getters
