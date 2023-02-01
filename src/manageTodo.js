@@ -16,10 +16,6 @@ const manageTodo = (() => {
         return todoStorage.retrieveTodo(key);
     }
 
-    const getId = todo => {
-        return todoStorage.retrieveId(key);
-    }
-
     const getTitle = key => {
         return todoStorage.retrieveTitle(key);
     }
@@ -65,7 +61,7 @@ const manageTodo = (() => {
         //constructor and remover?
         createTodo, removeTodo,
         //getter
-        getTodo, getId, getTitle, getDescription, getDueDate, getPriorty, getChecklist,
+        getTodo, getTitle, getDescription, getDueDate, getPriorty, getChecklist,
         //changer
         changeTitle, changeDescription, changeDueDate, changePriorty, changeChecklist
 
