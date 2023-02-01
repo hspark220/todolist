@@ -1,5 +1,4 @@
-import todo from './todo.js';
-import todoStorage from './todoStorage.js';
+import todoStorage from './todo/todoStorage.js';
 
 const manageTodo = (() => {
     //constructor?

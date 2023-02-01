@@ -74,8 +74,8 @@ const todoStorage = (() => {
 
 
     return {
-        //store
-        storeTodo,
+        //store and delete
+        storeTodo, deleteTodo,
         //retrieve
         retrieveId, retrieveTodo, retrieveTitle, retrieveDescription, retrieveDueDate, retrievePriorty, retrieveChecklist,
         //update
