@@ -18,7 +18,7 @@ const todoStorage = () => {
     const retrieveTodo = key => {
         const todoString = localStorage.getItem(key);
         const todoArray = todoString.split(':,:');
-        return todo(key,todoArray[0], todoArray[1], todoArray[2], todoArray[3], todoArray[4]);
+        return todo(key, todoArray[0], todoArray[1], todoArray[2], todoArray[3], todoArray[4]);
     }
 
     const retrieveId = key => {
@@ -45,11 +45,18 @@ const todoStorage = () => {
         return retrieveTodo(key).getChecklist();
     }
 
+    //update
+    const updateTitle = (key, newTitle) => {
+        retrieveTodo(key).setTitle(newTitle);
+    }
+
+
     return {
         //store
-        storeTodo, 
+        storeTodo,
         //retrieve
-        retrieveTodo, retrieveTitle, retrieveDescription, retrieveDueDate, retrievePriorty, retrieveChecklist}
+        retrieveTodo, retrieveTitle, retrieveDescription, retrieveDueDate, retrievePriorty, retrieveChecklist
+    }
 
 }
 
