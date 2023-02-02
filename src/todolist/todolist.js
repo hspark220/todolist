@@ -16,7 +16,6 @@ const todolist = (() => {
     }
     
     const _makeTodo = (key, div) => {
-        
         const todoDiv = document.createElement('div');
         const title = document.createElement('p');
 
@@ -66,25 +65,24 @@ const todolist = (() => {
     const _removeBtn = (e) => {
         const id = e.target.parentNode.id;
         manageTodo.removeTodo(id);
-        _updatePage();
+        updateList();
     }
 
     const _createBtn = () => {
         createEdit.create();
-        //_updatePage();
-        
     }
 
     const _edit = (e) => {
 
     }
 
-    const _updatePage = () => {
+    const updateList = () => {
         const main = document.querySelector('.todolist');
         main.removeChild(main.lastChild);
         const list = _makeList();
-    
+
         main.append(list);
+        
     }
 
     const printPage = () => {
@@ -95,7 +93,7 @@ const todolist = (() => {
         main.append(createBtn, list);
     }
 
-    return { printPage }
+    return { printPage, updateList }
 })()
 
 export default todolist;

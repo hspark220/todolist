@@ -1,4 +1,5 @@
 import manageTodo from "../todolist/manageTodo";
+import todolist from "../todolist/todolist";
 
 const createEdit = (() => {
     const create = () => {
@@ -34,6 +35,7 @@ const createEdit = (() => {
 
         manageTodo.createTodo(titleInput.value, descriptionInput.value, dueDateInput.value, priortyInput.value, '???');
         _clearForm();
+        todolist.updateList();
     }
 
     const _clearForm = () => {
@@ -49,6 +51,7 @@ const createEdit = (() => {
         const descriptionDiv = document.createElement('div');
         const dueDateDiv = document.createElement('div');
         const priortyDiv = document.createElement('div');
+        const exitForm = document.createElement('button');
 
         const titleLabel = document.createElement('label');
         const titleInput = document.createElement('input');
@@ -83,6 +86,9 @@ const createEdit = (() => {
         optionMedium.setAttribute('value','medium');
         optionHigh.setAttribute('value','high');
 
+        exitForm.setAttribute('id','exit-form')
+        exitForm.addEventListener('click', _clearForm);
+
         optionLow.append('Low');
         optionMedium.append('Medium');
         optionHigh.append('High');
@@ -96,7 +102,7 @@ const createEdit = (() => {
         descriptionDiv.append(descriptionLabel, descriptionInput);
         titleDiv.append(titleLabel, titleInput);
 
-        fieldset.append(titleDiv, descriptionDiv, dueDateDiv, priortyDiv);
+        fieldset.append(titleDiv, descriptionDiv, dueDateDiv, priortyDiv, exitForm);
 
         const todolist = document.querySelector('.todolist');
         todolist.append(fieldset);
