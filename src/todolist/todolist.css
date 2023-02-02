@@ -1,0 +1,36 @@
+/* 
+todolist
+*/
+.todolist {
+    padding: 10px;
+}
+
+
+/* 
+list
+*/
+.list {
+    display: flex;
+    flex-direction: column;
+}
+.list-item {
+    display: grid;
+    grid-template-columns: 16px 1fr 16px;
+    grid-template-areas: "complete title description delete";
+    align-items: center;
+    gap: 1rem;
+}   
+#complete {
+    grid-area: complete;
+    
+}
+.list-title {
+    grid-area: title;
+}
+#delete {
+    grid-area: delete;
+}
+.list-item input {
+    height: 16px;
+    width: 16px;
+}

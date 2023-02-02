@@ -1,5 +1,5 @@
-import manageTodo from './manageTodo.js';
-import todolist from './gui/todolist.js';
+import manageTodo from './todolist/manageTodo.js';
+import todolist from './todolist/todolist.js';
 import './style.css';
 
 todolist.printPage();

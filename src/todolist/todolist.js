@@ -1,4 +1,5 @@
-import manageTodo from "../manageTodo";
+import manageTodo from "./manageTodo";
+import './todolist.css';
 
 const todolist = (() => {
     
@@ -17,37 +18,34 @@ const todolist = (() => {
         
         const todoDiv = document.createElement('div');
         const title = document.createElement('p');
-        const description = document.createElement('p'); 
 
         todoDiv.setAttribute('id', key);
         todoDiv.setAttribute('class','list-item')
 
         title.setAttribute('class','list-title');
         title.innerHTML = manageTodo.getTitle(key);
-        description.setAttribute('class','list-description')
-        description.innerHTML = manageTodo.getDescription(key);
 
         const buttons = _makeTodoButtons();
 
-        todoDiv.append(title, description, buttons[0], buttons[1]);
+        todoDiv.append(title, buttons[0], buttons[1]);
         div.append(todoDiv);
 
         
     }
 
     const _makeTodoButtons = () => {
-        const editBtn = document.createElement('input');
-        editBtn.setAttribute('type','button');
-        editBtn.setAttribute('id','edit');
+        const completeBtn = document.createElement('input');
+        completeBtn.setAttribute('type','button');
+        completeBtn.setAttribute('id','complete');
 
         const removeBtn = document.createElement('input');
         removeBtn.setAttribute('type','button');
         removeBtn.setAttribute('id','delete');
 
-        editBtn.addEventListener('click', _editBtn);
+        completeBtn.addEventListener('click', _completeBtn);
         removeBtn.addEventListener('click', _removeBtn);
 
-        return [editBtn, removeBtn];
+        return [completeBtn, removeBtn];
     }
 
     const _makeCreateButton = () => {
@@ -60,7 +58,7 @@ const todolist = (() => {
         return createBtn;
     }
 
-    const _editBtn = (e) => {
+    const _completeBtn = (e) => {
 
     }
 
