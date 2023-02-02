@@ -1,3 +1,4 @@
+import createEdit from "../inputforms/createEdit";
 import manageTodo from "./manageTodo";
 import './todolist.css';
 
@@ -68,8 +69,14 @@ const todolist = (() => {
         _updatePage();
     }
 
-    const _createBtn = (e) => {
+    const _createBtn = () => {
+        createEdit.create();
+        //_updatePage();
         
+    }
+
+    const _edit = (e) => {
+
     }
 
     const _updatePage = () => {

@@ -10,8 +10,9 @@ const todoStorage = (() => {
     }
     //store
     const storeTodo = (title, description, dueDate, priorty, checklist) => {
-        if(localStorage.getItem(title) === null) {
+        if(localStorage.getItem(title) != null) {
             //cause an error?
+            console.log('error');
             return
         }
         const tempTodo = todo(title, description, dueDate, priorty, checklist);
