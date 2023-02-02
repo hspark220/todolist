@@ -30,6 +30,8 @@ const todolist = (() => {
         todoDiv.append(title, buttons[0], buttons[1]);
         div.append(todoDiv);
 
+        title.addEventListener('click', _edit);
+
         
     }
 
@@ -49,8 +51,7 @@ const todolist = (() => {
     }
 
     const _makeCreateButton = () => {
-        const createBtn = document.createElement('input');
-        createBtn.setAttribute('type','button');
+        const createBtn = document.createElement('button');
         createBtn.setAttribute('id','create');
 
         createBtn.addEventListener('click',_createBtn);
@@ -73,7 +74,7 @@ const todolist = (() => {
     }
 
     const _edit = (e) => {
-
+        createEdit.edit(e);
     }
 
     const updateList = () => {

@@ -58,23 +58,35 @@ const todoStorage = (() => {
 
     //update
     const updateTitle = (key, newTitle) => {
-        retrieveTodo(key).setTitle(newTitle);
+        const tempTodo = retrieveTodo(key)
+        const tempTitle = tempTodo.getTitle();
+        tempTodo.setTitle(newTitle);
+        localStorage.setItem(tempTodo.getTitle(), _stringTodo(tempTodo));
+        localStorage.removeItem(tempTitle);
     }
 
     const updateDescription = (key, newDescription) => {
-        retrieveTodo(key).setDescription(newDescription);
+        const tempTodo = retrieveTodo(key)
+        tempTodo.setDescription(newDescription);
+        localStorage.setItem(tempTodo.getTitle(),_stringTodo(tempTodo));
     }
 
     const updateDueDate = (key, newDueDate) => {
-        retrieveTodo(key).setDueDate(newDueDate);
+        const tempTodo = retrieveTodo(key)
+        tempTodo.setDueDate(newDueDate);
+        localStorage.setItem(tempTodo.getTitle(),_stringTodo(tempTodo));
     }
 
     const updatePriorty = (key, newPriorty) => {
-        retrieveTodo(key).setPriorty(newPriorty);
+        const tempTodo = retrieveTodo(key)
+        tempTodo.setPriorty(newPriorty);
+        localStorage.setItem(tempTodo.getTitle(),_stringTodo(tempTodo));
     }
 
     const updateChecklist = (key, newChecklist) => {
-        retrieveTodo(key).setChecklist(newChecklist);
+        const tempTodo = retrieveTodo(key)
+        tempTodo.setChecklist(newChecklist);
+        localStorage.setItem(tempTodo.getTitle(),_stringTodo(tempTodo));
     }
 
 

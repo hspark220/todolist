@@ -16,15 +16,34 @@ const createEdit = (() => {
     }
 
     const edit = (e) => {
+        const id = e.target.parentNode.id;
+
         _createForm();
         const fieldset = document.getElementById('fieldset');
         const editSubmit = document.createElement('input');
         editSubmit.setAttribute('type','button');
-        editSubmit.setAttribute('id','create-submit');
+        editSubmit.setAttribute('id','edit-submit');
 
-        createSubmit.addEventListener('click', _submitEdit);
+        const titleInput = document.querySelector('#title-input');
+        const descriptionInput = document.querySelector('#description-input');
+        const dueDateInput = document.querySelector('#dueDate-input');
+        const priortyInput = document.querySelector('#priorty-input');
 
-        fieldset.append(createSubmit);
+        titleInput.value = manageTodo.getTitle(id);
+        descriptionInput.value = manageTodo.getDescription(id);
+        dueDateInput.value = manageTodo.getDueDate(id);
+        priortyInput.value = manageTodo.getPriorty(id);
+
+        editSubmit.addEventListener('click', function _submitEdit() {
+            manageTodo.changeTitle(id, titleInput.value);
+            manageTodo.changeDescription(id, descriptionInput.value);
+            manageTodo.changeDueDate(id, dueDateInput.value);
+            manageTodo.changePriorty(id, priortyInput.value);
+            _clearForm();
+            todolist.updateList();
+        });
+
+        fieldset.append(editSubmit);
     }
 
     const _submitCreate = () => {
@@ -37,6 +56,7 @@ const createEdit = (() => {
         _clearForm();
         todolist.updateList();
     }
+
 
     const _clearForm = () => {
         const fieldset = document.getElementById('fieldset');
@@ -59,6 +79,7 @@ const createEdit = (() => {
         const descriptionInput = document.createElement('input');
         const dueDateLabel = document.createElement('label');
         const dueDateInput = document.createElement('input');
+        const priortyLabel = document.createElement('label');
         const priortyInput = document.createElement('select');
         const optgroup = document.createElement('optgroup');
         const optionLow = document.createElement('option');
@@ -66,7 +87,7 @@ const createEdit = (() => {
         const optionHigh = document.createElement('option');
 
         titleDiv.setAttribute('class','title-div')
-        titleLabel.setAttribute('for','title-inpu');
+        titleLabel.setAttribute('for','title-input');
         titleInput.setAttribute('type','text');
         titleInput.setAttribute('id','title-input');
 
@@ -81,6 +102,7 @@ const createEdit = (() => {
         dueDateInput.setAttribute('id','dueDate-input');
 
         priortyDiv.setAttribute('class','priorty-div');
+        priortyLabel.setAttribute('for','priorty-input')
         priortyInput.setAttribute('id','priorty-input');
         optionLow.setAttribute('value','low');
         optionMedium.setAttribute('value','medium');
@@ -92,12 +114,16 @@ const createEdit = (() => {
         optionLow.append('Low');
         optionMedium.append('Medium');
         optionHigh.append('High');
-        // optionMedium.innerHTML('Medium');
-        // optionHigh.innerHTML('High');
+
+        titleLabel.append('Title: ');
+        descriptionLabel.append('Description: ')
+        dueDateLabel.append('Due Date: ')
+        priortyLabel.append('Priorty: ')
+
         optgroup.append(optionLow, optionMedium, optionHigh);
         priortyInput.append(optgroup);
 
-        priortyDiv.append(priortyInput);
+        priortyDiv.append(priortyLabel, priortyInput);
         dueDateDiv.append(dueDateLabel, dueDateInput);
         descriptionDiv.append(descriptionLabel, descriptionInput);
         titleDiv.append(titleLabel, titleInput);
@@ -106,7 +132,6 @@ const createEdit = (() => {
 
         const todolist = document.querySelector('.todolist');
         todolist.append(fieldset);
-
     }
 
     return {create, edit}
