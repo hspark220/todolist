@@ -55,6 +55,7 @@ const todolist = (() => {
         createBtn.setAttribute('id','create');
 
         createBtn.addEventListener('click',_createBtn);
+        createBtn.append('Add');
 
         return createBtn;
     }

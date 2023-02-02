@@ -1,0 +1,46 @@
+/* 
+input forms 
+*/
+#fieldset {
+    display: grid;
+    grid-template: repeat(5 1fr) / repeat(2 1fr);
+    grid-template-areas: 
+    "title title"
+    "description description"
+    "dueDate dueDate"
+    "priorty priorty"
+    "exit submit";
+    padding: 10px;
+    margin: 0 auto;
+
+    width: min(500px, 90%);
+}
+.title-div {
+    grid-area: title;
+}
+.description-div {
+    grid-area: description;
+}
+.dueDate-div {
+    grid-area: dueDate;
+}
+.priorty-div {
+    grid-area: priorty;
+}
+#exit-form {
+    grid-area: exit;
+
+    /* height: 16px;
+    width: 16px; */
+}
+#create-submit {
+    grid-area: submit;
+}
+#edit-submit {
+    grid-area: submit;
+}
+
+#fieldset > div {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}

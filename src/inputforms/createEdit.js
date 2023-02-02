@@ -1,5 +1,6 @@
 import manageTodo from "../todolist/manageTodo";
 import todolist from "../todolist/todolist";
+import './createEdit.css'
 
 const createEdit = (() => {
     const create = () => {
@@ -8,11 +9,11 @@ const createEdit = (() => {
         const createSubmit = document.createElement('input');
         createSubmit.setAttribute('type','button');
         createSubmit.setAttribute('id','create-submit');
+        createSubmit.value = 'Submit';
 
         createSubmit.addEventListener('click', _submitCreate);
 
         fieldset.append(createSubmit);
-        
     }
 
     const edit = (e) => {
@@ -23,6 +24,7 @@ const createEdit = (() => {
         const editSubmit = document.createElement('input');
         editSubmit.setAttribute('type','button');
         editSubmit.setAttribute('id','edit-submit');
+        editSubmit.value = 'Submit';
 
         const titleInput = document.querySelector('#title-input');
         const descriptionInput = document.querySelector('#description-input');
@@ -110,6 +112,7 @@ const createEdit = (() => {
 
         exitForm.setAttribute('id','exit-form')
         exitForm.addEventListener('click', _clearForm);
+        exitForm.append('Cancel');
 
         optionLow.append('Low');
         optionMedium.append('Medium');
@@ -132,6 +135,7 @@ const createEdit = (() => {
 
         const todolist = document.querySelector('.todolist');
         todolist.append(fieldset);
+        titleInput.focus();
     }
 
     return {create, edit}
