@@ -2,8 +2,8 @@ import todoStorage from './todoStorage.js';
 
 const manageTodo = (() => {
     //constructor?
-    const createTodo = (title, description, dueDate, priorty, checklist) => {
-        todoStorage.storeTodo(title, description, dueDate, priorty, checklist);
+    const createTodo = (title, description, dueDate, priorty, complete) => {
+        todoStorage.storeTodo(title, description, dueDate, priorty, complete);
         
     }
 
@@ -32,8 +32,13 @@ const manageTodo = (() => {
         return todoStorage.retrievePriorty(key);
     }
 
-    const getChecklist = key => {
-        return todoStorage.retrieveChecklist(key);
+    const getComplete = key => {
+        const bool_value =  todoStorage.retrieveComplete(key);
+        if (bool_value == "true") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //changers
@@ -53,17 +58,21 @@ const manageTodo = (() => {
         todoStorage.updatePriorty(key, newPriorty);
     }
 
-    const changeChecklist = (key, newChecklist) => {
-        todoStorage.updateChecklist(key, newChecklist);
+    const changeComplete = (key) => {
+        if (getComplete(key) == true) {
+            todoStorage.updateComplete(key, false);
+        } else {
+            todoStorage.updateComplete(key, true)
+        }
     }
 
     return {
         //constructor and remover?
         createTodo, removeTodo,
         //getter
-        getTodo, getTitle, getDescription, getDueDate, getPriorty, getChecklist,
+        getTodo, getTitle, getDescription, getDueDate, getPriorty, getComplete,
         //changer
-        changeTitle, changeDescription, changeDueDate, changePriorty, changeChecklist
+        changeTitle, changeDescription, changeDueDate, changePriorty, changeComplete
 
     }
 })();

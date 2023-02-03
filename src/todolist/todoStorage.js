@@ -6,7 +6,7 @@ import todo from './todo.js';
 const todoStorage = (() => {
     //private methods
     const _stringTodo = todo => {
-        return `${todo.getTitle()}:,:${todo.getDescription()}:,:${todo.getDueDate()}:,:${todo.getPriorty()}:,:${todo.getChecklist()}`
+        return `${todo.getTitle()}:,:${todo.getDescription()}:,:${todo.getDueDate()}:,:${todo.getPriorty()}:,:${todo.getComplete()}`
     }
     //store
     const storeTodo = (title, description, dueDate, priorty, checklist) => {
@@ -52,8 +52,8 @@ const todoStorage = (() => {
         return retrieveTodo(key).getPriorty();
     }
 
-    const retrieveChecklist = key => {
-        return retrieveTodo(key).getChecklist();
+    const retrieveComplete = key => {
+        return retrieveTodo(key).getComplete();
     }
 
     //update
@@ -83,9 +83,9 @@ const todoStorage = (() => {
         localStorage.setItem(tempTodo.getTitle(),_stringTodo(tempTodo));
     }
 
-    const updateChecklist = (key, newChecklist) => {
+    const updateComplete = (key, newComplete) => {
         const tempTodo = retrieveTodo(key)
-        tempTodo.setChecklist(newChecklist);
+        tempTodo.setComplete(newComplete);
         localStorage.setItem(tempTodo.getTitle(),_stringTodo(tempTodo));
     }
 
@@ -94,9 +94,9 @@ const todoStorage = (() => {
         //store and delete
         storeTodo, deleteTodo,
         //retrieve
-        retrieveTodo, retrieveTitle, retrieveDescription, retrieveDueDate, retrievePriorty, retrieveChecklist,
+        retrieveTodo, retrieveTitle, retrieveDescription, retrieveDueDate, retrievePriorty, retrieveComplete,
         //update
-        updateTitle, updateDescription, updateDueDate, updatePriorty, updateChecklist
+        updateTitle, updateDescription, updateDueDate, updatePriorty, updateComplete
     }
 
 })();

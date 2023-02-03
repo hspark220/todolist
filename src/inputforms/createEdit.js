@@ -54,7 +54,7 @@ const createEdit = (() => {
         const dueDateInput = document.querySelector('#dueDate-input');
         const priortyInput = document.querySelector('#priorty-input');
 
-        manageTodo.createTodo(titleInput.value, descriptionInput.value, dueDateInput.value, priortyInput.value, '???');
+        manageTodo.createTodo(titleInput.value, descriptionInput.value, dueDateInput.value, priortyInput.value, false);
         _clearForm();
         todolist.updateList();
     }

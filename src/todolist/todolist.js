@@ -24,6 +24,9 @@ const todolist = (() => {
 
         title.setAttribute('class','list-title');
         title.innerHTML = manageTodo.getTitle(key);
+        
+        title.style.textDecoration = manageTodo.getComplete(key) === true ? 'line-through' :'none';
+        
 
         const buttons = _makeTodoButtons();
 
@@ -61,7 +64,9 @@ const todolist = (() => {
     }
 
     const _completeBtn = (e) => {
-        
+        const id = e.target.parentNode.id;
+        manageTodo.changeComplete(id);
+        updateList();
     }
 
     const _removeBtn = (e) => {

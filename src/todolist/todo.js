@@ -1,4 +1,4 @@
-const todo = (title, description, dueDate, priorty, checklist) => {
+const todo = (title, description, dueDate, priorty, complete) => {
     const getTitle = () => {
         return title;
     }
@@ -15,8 +15,8 @@ const todo = (title, description, dueDate, priorty, checklist) => {
         return priorty;
     }
 
-    const getChecklist = () => {
-        return checklist;
+    const getComplete = () => {
+        return complete;
     }
 
     //setters
@@ -36,15 +36,15 @@ const todo = (title, description, dueDate, priorty, checklist) => {
         priorty = newPriorty;
     }
 
-    const setChecklist = (newChecklist) => {
-        checklist = newChecklist;
+    const setComplete = (newComplete) => {
+        complete = newComplete;
     }
 
     return {
         //getter
-        getTitle, getDescription, getDueDate, getPriorty, getChecklist,
+        getTitle, getDescription, getDueDate, getPriorty, getComplete,
         //setter
-        setTitle, setDescription, setDueDate, setPriorty, setChecklist
+        setTitle, setDescription, setDueDate, setPriorty, setComplete
     }
 }
 
