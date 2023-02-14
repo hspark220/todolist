@@ -1,4 +1,4 @@
-import manageTodo from "../todolist/manageTodo";
+import manageTodo from "../todo/manageTodo";
 import './details.css';
 
 const details = (() => {
@@ -7,18 +7,18 @@ const details = (() => {
         const details = document.querySelector('.details');
 
         const title = document.createElement('p');
-        const description = document.createElement('p');
+        const project = document.createElement('p');
         const dueDate = document.createElement('p');
         const priorty = document.createElement('p');
         const complete = document.createElement('p');
 
-        title.append(manageTodo.getTitle(id));
-        description.append(manageTodo.getDescription(id));
-        dueDate.append(manageTodo.getDueDate(id));
-        priorty.append(manageTodo.getPriorty(id));
-        complete.append(manageTodo.getComplete(id));
-
-        details.append(title, description, dueDate, priorty, complete);
+        if (manageTodo.getTodo(id) != null) {
+            title.append(`Title: ${manageTodo.getTitle(id)}`);
+            project.append(`Descsription: ${manageTodo.getProject(id)}`);
+            dueDate.append(`Due Date: ${manageTodo.getDueDate(id)}`);
+            priorty.append(`Priorty: ${manageTodo.getPriorty(id)}`);
+        }
+        details.append(title, project, dueDate, priorty, complete);
 
     }
 

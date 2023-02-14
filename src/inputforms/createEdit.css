@@ -6,7 +6,7 @@ input forms
     grid-template: repeat(5 1fr) / repeat(2 1fr);
     grid-template-areas: 
     "title title"
-    "description description"
+    "project project"
     "dueDate dueDate"
     "priorty priorty"
     "exit submit";
@@ -18,8 +18,8 @@ input forms
 .title-div {
     grid-area: title;
 }
-.description-div {
-    grid-area: description;
+.project-div {
+    grid-area: project;
 }
 .dueDate-div {
     grid-area: dueDate;

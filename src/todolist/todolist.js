@@ -1,5 +1,5 @@
 import createEdit from "../inputforms/createEdit";
-import manageTodo from "./manageTodo";
+import manageTodo from "../todo/manageTodo";
 import './todolist.css';
 
 const todolist = (() => {
@@ -23,7 +23,7 @@ const todolist = (() => {
         todoDiv.setAttribute('class','list-item')
 
         title.setAttribute('class','list-title');
-        title.innerHTML = manageTodo.getTitle(key);
+        title.innerHTML = `${manageTodo.getTitle(key)} (${manageTodo.getProject(key)})`;
         
         title.style.textDecoration = manageTodo.getComplete(key) === true ? 'line-through' :'none';
         
@@ -66,6 +66,7 @@ const todolist = (() => {
     const _completeBtn = (e) => {
         const id = e.target.parentNode.id;
         manageTodo.changeComplete(id);
+        console.log(manageTodo.getComplete(id));
         updateList();
     }
 

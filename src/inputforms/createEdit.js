@@ -1,4 +1,4 @@
-import manageTodo from "../todolist/manageTodo";
+import manageTodo from "../todo/manageTodo";
 import todolist from "../todolist/todolist";
 import './createEdit.css'
 
@@ -27,18 +27,18 @@ const createEdit = (() => {
         editSubmit.value = 'Submit';
 
         const titleInput = document.querySelector('#title-input');
-        const descriptionInput = document.querySelector('#description-input');
+        const projectInput = document.querySelector('#project-input');
         const dueDateInput = document.querySelector('#dueDate-input');
         const priortyInput = document.querySelector('#priorty-input');
 
         titleInput.value = manageTodo.getTitle(id);
-        descriptionInput.value = manageTodo.getDescription(id);
+        projectInput.value = manageTodo.getProject(id);
         dueDateInput.value = manageTodo.getDueDate(id);
         priortyInput.value = manageTodo.getPriorty(id);
 
         editSubmit.addEventListener('click', function _submitEdit() {
             manageTodo.changeTitle(id, titleInput.value);
-            manageTodo.changeDescription(id, descriptionInput.value);
+            manageTodo.changeProject(id, projectInput.value);
             manageTodo.changeDueDate(id, dueDateInput.value);
             manageTodo.changePriorty(id, priortyInput.value);
             _clearForm();
@@ -50,11 +50,11 @@ const createEdit = (() => {
 
     const _submitCreate = () => {
         const titleInput = document.querySelector('#title-input');
-        const descriptionInput = document.querySelector('#description-input');
+        const projectInput = document.querySelector('#project-input');
         const dueDateInput = document.querySelector('#dueDate-input');
         const priortyInput = document.querySelector('#priorty-input');
 
-        manageTodo.createTodo(titleInput.value, descriptionInput.value, dueDateInput.value, priortyInput.value, false);
+        manageTodo.createTodo(titleInput.value, projectInput.value, dueDateInput.value, priortyInput.value, false);
         _clearForm();
         todolist.updateList();
     }
@@ -70,15 +70,15 @@ const createEdit = (() => {
         fieldset.setAttribute('id','fieldset');
         
         const titleDiv = document.createElement('div');
-        const descriptionDiv = document.createElement('div');
+        const projectDiv = document.createElement('div');
         const dueDateDiv = document.createElement('div');
         const priortyDiv = document.createElement('div');
         const exitForm = document.createElement('button');
 
         const titleLabel = document.createElement('label');
         const titleInput = document.createElement('input');
-        const descriptionLabel = document.createElement('label');
-        const descriptionInput = document.createElement('input');
+        const projectLabel = document.createElement('label');
+        const projectInput = document.createElement('input');
         const dueDateLabel = document.createElement('label');
         const dueDateInput = document.createElement('input');
         const priortyLabel = document.createElement('label');
@@ -93,10 +93,10 @@ const createEdit = (() => {
         titleInput.setAttribute('type','text');
         titleInput.setAttribute('id','title-input');
 
-        descriptionDiv.setAttribute('class','description-div');
-        descriptionLabel.setAttribute('for','description-input');
-        descriptionInput.setAttribute('type','text');
-        descriptionInput.setAttribute('id','description-input');
+        projectDiv.setAttribute('class','project-div');
+        projectLabel.setAttribute('for','project-input');
+        projectInput.setAttribute('type','text');
+        projectInput.setAttribute('id','project-input');
 
         dueDateDiv.setAttribute('class','dueDate-div');
         dueDateLabel.setAttribute('for','dueDate-input');
@@ -119,7 +119,7 @@ const createEdit = (() => {
         optionHigh.append('High');
 
         titleLabel.append('Title: ');
-        descriptionLabel.append('Description: ')
+        projectLabel.append('Project: ')
         dueDateLabel.append('Due Date: ')
         priortyLabel.append('Priorty: ')
 
@@ -128,10 +128,10 @@ const createEdit = (() => {
 
         priortyDiv.append(priortyLabel, priortyInput);
         dueDateDiv.append(dueDateLabel, dueDateInput);
-        descriptionDiv.append(descriptionLabel, descriptionInput);
+        projectDiv.append(projectLabel, projectInput);
         titleDiv.append(titleLabel, titleInput);
 
-        fieldset.append(titleDiv, descriptionDiv, dueDateDiv, priortyDiv, exitForm);
+        fieldset.append(titleDiv, projectDiv, dueDateDiv, priortyDiv, exitForm);
 
         const todolist = document.querySelector('.todolist');
         todolist.append(fieldset);
