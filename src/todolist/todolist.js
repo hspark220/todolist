@@ -1,14 +1,16 @@
 import createEdit from "../inputforms/createEdit";
 import manageTodo from "../todo/manageTodo";
+import todoProjects from "../todo/todoProjects";
 import './todolist.css';
 
 const todolist = (() => {
     
-    const _makeList = () => {
+    const _makeList = (todoList) => {
         const list = document.createElement('div');
         list.setAttribute('class','list');
         let i = 0;
-        while (localStorage.key(i) != null) {
+        const todos = todoList;
+        for(const todo in todos) {
             _makeTodo(i, list);
             i++;
         }
@@ -73,7 +75,7 @@ const todolist = (() => {
     const _removeBtn = (e) => {
         const id = e.target.parentNode.id;
         manageTodo.removeTodo(id);
-        updateList();
+        updateList(todoProjects.getList());
     }
 
     const _createBtn = () => {
@@ -84,20 +86,26 @@ const todolist = (() => {
         createEdit.edit(e);
     }
 
-    const updateList = () => {
+    const updateList = (todoList) => {
+        manageTodo.changeCurrentList(todoProjects.getTodayList());
         const main = document.querySelector('.todolist');
-        main.removeChild(main.lastChild);
-        const list = _makeList();
-
-        main.append(list);
+        try {
+            main.removeChild(main.lastChild);
+            main.removeChild(main.firstChild);
+        } catch {
+            
+        }
+        const createBtn = _makeCreateButton();
+        const list = _makeList(todoList);
+        main.append(createBtn, list);
         
     }
 
     const printPage = () => {
+        manageTodo.changeCurrentList(todoProjects.getTodayList());
         const main = document.querySelector('.todolist');
-        const list = _makeList();
         const createBtn = _makeCreateButton();
-    
+        const list = _makeList(todoProjects.getList());
         main.append(createBtn, list);
     }
 

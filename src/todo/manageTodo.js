@@ -17,6 +17,7 @@ const manageTodo = (() => {
     }
 
     const getTitle = key => {
+        console.log(getCurrentList());
         return todoStorage.retrieveTodo(key).title;
     }
 
@@ -34,6 +35,18 @@ const manageTodo = (() => {
 
     const getComplete = key => {
         return todoStorage.retrieveTodo(key).complete;
+    }
+
+    const getProjects = () => {
+        return todoStorage.retrieveProjects();
+    }
+
+    const getLength = () => {
+        return todoStorage.retrieveTodoLength();
+    }
+    
+    const getCurrentList = () => {
+        return todoStorage.retrieveList();
     }
 
     //changers
@@ -62,13 +75,20 @@ const manageTodo = (() => {
         todoStorage.updateTodo(key, todo.title, todo.project, todo.dueDate, todo.priorty, !todo.complete);
     }
 
+    const changeCurrentList = (list) => {
+        todoStorage.storeList(list);
+    }
+
+
+
+
     return {
         //constructor and remover?
         createTodo, removeTodo,
         //getter
-        getTodo, getTitle, getProject, getDueDate, getPriorty, getComplete,
+        getTodo, getTitle, getProject, getDueDate, getPriorty, getComplete, getProjects, getLength, getCurrentList,
         //changer
-        changeTitle, changeProject, changeDueDate, changePriorty, changeComplete
+        changeTitle, changeProject, changeDueDate, changePriorty, changeComplete, changeCurrentList
 
     }
 })();

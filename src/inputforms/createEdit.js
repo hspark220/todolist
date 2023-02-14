@@ -1,4 +1,5 @@
 import manageTodo from "../todo/manageTodo";
+import todoProjects from "../todo/todoProjects";
 import todolist from "../todolist/todolist";
 import './createEdit.css'
 
@@ -42,7 +43,7 @@ const createEdit = (() => {
             manageTodo.changeDueDate(id, dueDateInput.value);
             manageTodo.changePriorty(id, priortyInput.value);
             _clearForm();
-            todolist.updateList();
+            todolist.updateList(todoProjects.getCurrentTabList());
         });
 
         fieldset.append(editSubmit);
@@ -56,7 +57,7 @@ const createEdit = (() => {
 
         manageTodo.createTodo(titleInput.value, projectInput.value, dueDateInput.value, priortyInput.value, false);
         _clearForm();
-        todolist.updateList();
+        todolist.updateList(todoProjects.getCurrentTabList());
     }
 
 

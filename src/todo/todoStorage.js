@@ -15,6 +15,20 @@ const todoStorage = (() => {
         localStorage.setItem(title,JSON.stringify(tempTodo));
     }
 
+    const storeProjects = (newProject) => {
+        try {
+            projectList = JSON.parse(localStorage.getItem('__projectlist__'));
+            projectList.push(newProject);
+        } catch {
+            projectList = [newProject];
+        }
+        localStorage.setItem('__projectlist__',JSON.stringify(newProject));
+    }
+
+    const storeList = (list) => {
+        localStorage.setItem('__currentList__', list)
+    }
+
     //delete
     const deleteTodo = key => {
         localStorage.removeItem(localStorage.key(key));    
@@ -31,6 +45,23 @@ const todoStorage = (() => {
         
     }
 
+    const retrieveProjects = () => {
+        try {
+            return JSON.parse(localStorage.getItem('__projectlist__'))    
+        } catch {
+            return;
+        }
+        
+    }
+
+    const retrieveTodoLength = () => {
+        return localStorage.length;
+    }
+
+    const retrieveList = () => {
+        return localStorage.getItem('__currentList__');
+    }
+
     //update
     const updateTodo = (key, title, project, dueDate, priorty, complete) => {
         const tempTodo = todo(title, project, dueDate, priorty, complete);
@@ -39,7 +70,10 @@ const todoStorage = (() => {
     }
 
     return {
-        storeTodo, deleteTodo, updateTodo, retrieveTodo
+        storeTodo, storeProjects, storeList,
+        deleteTodo, 
+        updateTodo, 
+        retrieveTodo, retrieveProjects, retrieveTodoLength, retrieveList
     }
 
 })();
