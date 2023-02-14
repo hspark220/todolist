@@ -10,31 +10,18 @@ template layout
 body {
     height: 100vh;
     display: grid;
-    grid-template: clamp(100px, 20%, 200px) clamp(100px, 20%, 200px) 1fr / 1fr max(300px, 50%) 1fr;
+    grid-template-columns: 300px 1fr;
     grid-template-areas:
-    "project title title"
-    "project details details"
-    "project todolist date";
+    "project todolist"
+    "project todolist";
 }
 
-.title {
-    grid-area: title;
-    border: solid;
-}
 .projects {
     grid-area: project;
     border: solid;
 }
-.details {
-    grid-area: details;
-    border: solid;
-}
 .todolist {
     grid-area: todolist;
-    border: solid;
-}
-.date {
-    grid-area: date;
     border: solid;
 }
 

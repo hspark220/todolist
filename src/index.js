@@ -4,4 +4,3 @@ import './style.css';
 import details from './details/details.js';
 
 todolist.printPage();
-details.showTodo(0);
