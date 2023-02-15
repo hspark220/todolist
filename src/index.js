@@ -1,7 +1,9 @@
-import todolist from './todolist/todolist.js';
-import './style.css';
-import details from './details/details.js';
-import projects from './projects/project.js';
+import project from './todo/project.js';
+import todo from './todo/todo.js';
+import projectlist from './todo/projectlist.js';
 
-todolist.printPage();
-projects.printProjects();
+
+// projectlist.addProject('one');
+const todo2 = todo('name2','one','priorty2','duedate2','status2');
+project.addTodo(todo2);
+console.log(projectlist.getProject('one'))
