@@ -1,11 +1,26 @@
 import projectlist from "./projectlist";
-import project from "./project"
-import todo from "./todo";
 
 
 const todoAPI = (() => {
 
-    //getters
+    //create
+    const addTodo = (todo) => {
+        const project = projectlist.getProject(todo.project);
+
+        project.push(todo);
+        projectlist.getProject(todo.project).push(todo);
+
+        projectlist.updateProject(todo.project, project);
+    }
+
+    //read
+    const getTodo = todo => {
+        const project = projectlist.getProject(todo.project);
+        const index = project.indexOf(todo.name);
+
+        return project[index];
+    }
+
     const getLength = (projectName) => {
         return projectlist.getProject(projectName).length;
     }
@@ -26,22 +41,36 @@ const todoAPI = (() => {
         return todo.status;
     }
 
-    //setters? updaters?
-    const toggleStatus = (index, todo) => {
-        todo.status = !todo.status;
-        project.updateTodo(index, todo);
+    // updaters?
+    const updateTodo = (index, todo) => {
+        const project = projectlist.getProject(todo.project);
+        project[index] = todo;
+        projectlist.updateProject(project);
     }
 
+
+    const toggleStatus = (index, todo) => {
+        todo.status = !todo.status;
+        updateTodo(index, todo);
+    }
+
+
+    //delete
     const removeTodo = (index, todo) => {
         let project = projectlist.getProject(todo.project);
         project.splice(index, 1)
         projectlist.updateProject(todo.project, project);
-        console.log(project);
     }   
 
     return {
-        getLength, getProjectList, getName, getDate, getStatus,
-        toggleStatus, removeTodo
+        //create
+        addTodo,
+        //read
+        getTodo, getLength, getProjectList, getName, getDate, getStatus,
+        //update
+        updateTodo, toggleStatus, 
+        //delete
+        removeTodo,
     }
 })();
 
