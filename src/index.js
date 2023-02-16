@@ -3,4 +3,4 @@ import project from "./todo/project";
 import projectlist from "./todo/projectlist";
 import todolist from "./todolist/todolist";
 
-todolist.printProject('one');
+todolist.printProject('two');
