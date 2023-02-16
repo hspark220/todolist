@@ -1,6 +1,5 @@
 import './todolist.css'
-import project from '../todo/project.js';
-import projectlist from '../todo/projectlist';
+import todoAPI from '../todo/todoAPI';
 
 const todolist = (() => {
 
@@ -12,29 +11,58 @@ const todolist = (() => {
         
         const list = document.createElement('div');
         list.setAttribute('class','list');
+        todolistDiv.append(list);
 
         _printList(projectName);
-
     }
 
     const _printList = projectName => {
         const list = document.querySelector('.list');
+        
 
-        for (project.)
-        const todo = document.createElement('div');
-        todo.setAttribute('id',i);
+        const length = todoAPI.getLength(projectName);
+        const project = todoAPI.getProjectList(projectName);
+        
+        for (let i = 0; i < length; i++) {
+            const todo = document.createElement('div');
+            todo.setAttribute('id',i);
 
-        const check = document.createElement('button');
-        check.setAttribute('id','check');
+            const check = document.createElement('button');
+            check.setAttribute('id','todocheck');
+            check.addEventListener('click',  (e) => {
+                todoAPI.toggleStatus(i, project[i]);
+            });
 
-        const name = document.createElement('p');
-        name.setAttribute('id')
+            const name = document.createElement('p');
+            name.setAttribute('class', 'todo-name');
+            name.innerHTML = `${todoAPI.getName(project[i])}`;
+
+            const date = document.createElement('p');
+            date.setAttribute('class','todo-date');
+            date.innerHTML = `${todoAPI.getDate(project[i])}`;
+
+            const remove = document.createElement('button');
+            remove.setAttribute('id','todoremove');
+            remove.addEventListener('click', (e) => {
+                todoAPI.removeTodo(i, project[i]);
+                _refreshList(projectName);
+            });
+
+            todo.append(check, name, date, remove);
+            list.append(todo);
+        }
+        
+        
     }
 
-    const _clearList = () => {
-
+    const _refreshList = projectName => {
+        const todolistDiv = document.querySelector('.todolist');
+        const list = document.querySelector('.list');
+        todolistDiv.removeChild(list);
+        printProject(projectName)
     }
 
+    return {printProject}
 
 })();
 

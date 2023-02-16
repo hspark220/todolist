@@ -18,17 +18,15 @@ const project = (() => {
         return project[index];
     }
 
-    const removeTodo = todo => {
+    const removeTodo = (index, todo) => {
         const project = projectlist.getProject(todo.project);
-        const index = project.indexOf(todo.name);
-        project.slice(index)
+        project = project.splice(index, 1)
         projectlist.updateProject(project);
 
     }
 
-    const updateTodo = (todoName, todo) => {
+    const updateTodo = (index, todo) => {
         const project = projectlist.getProject(todo.project);
-        const index = project.indexOf(todoName);
         project[index] = todo;
         projectlist.updateProject(project);
     }
