@@ -9,7 +9,7 @@ const projectlist = (() => {
             list = [];
             nameList = [];
         }
-        
+
         //checks for dulicate projects
         if (nameList.indexOf(name) === -1) {
             const project = [];
@@ -21,8 +21,6 @@ const projectlist = (() => {
         } else {
             console.log('duplicate project name?')
         }
-        
-        
     }
 
     const getProject = (projectName) => {
