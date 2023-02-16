@@ -6,6 +6,7 @@ const project = (() => {
         const project = projectlist.getProject(todo.project);
 
         project.push(todo);
+        projectlist.getProject(todo.project).push(todo);
 
         projectlist.updateProject(todo.project, project);
     }

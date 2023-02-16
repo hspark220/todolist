@@ -9,14 +9,20 @@ const projectlist = (() => {
             list = [];
             nameList = [];
         }
+        
+        //checks for dulicate projects
+        if (nameList.indexOf(name) === -1) {
+            const project = [];
+            list.push(project);
+            nameList.push(name);
 
-        const project = [];
-
-        list.push(project);
-        nameList.push(name);
-
-        storage.storeProjects(list);
-        storage.storeNames(nameList);
+            storage.storeProjects(list);
+            storage.storeNames(nameList);
+        } else {
+            console.log('duplicate project name?')
+        }
+        
+        
     }
 
     const getProject = (projectName) => {
@@ -24,6 +30,7 @@ const projectlist = (() => {
         const nameList = storage.retrieveNames();
 
         const index = nameList.indexOf(projectName);
+
         return projects[index];
     }
 
@@ -45,7 +52,7 @@ const projectlist = (() => {
 
         const index = nameList.indexOf(projectName);
 
-        list[index].push(project);
+        list[index] = (project);
 
         storage.storeProjects(list);
     }
