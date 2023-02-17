@@ -24,11 +24,7 @@ const todolist = (() => {
             list.append(todo);
             _createTodoButtons(i, project, projectName);
             _todoNameAndDate(i, project);
-
-            
         }
-        
-        
     }
 
     const _refreshList = projectName => {
