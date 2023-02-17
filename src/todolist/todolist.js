@@ -19,11 +19,13 @@ const todolist = (() => {
         const project = todoAPI.getProjectList(projectName);
         
         for (let i = 0; i < length; i++) {
-            _createTodoButtons(i, project);
-            _todoNameAndDate(i, project);
-            const todo = document.querySelector(`#1`);
-
+            const todo = document.createElement('div');
+            todo.setAttribute('id',i);
             list.append(todo);
+            _createTodoButtons(i, project, projectName);
+            _todoNameAndDate(i, project);
+
+            
         }
         
         
@@ -70,10 +72,9 @@ const todolist = (() => {
         todolistDiv.append(list);
     }
 
-    const _createTodoButtons = (i, project) => {
+    const _createTodoButtons = (i, project, projectName) => {
 
-        const todo = document.createElement('div');
-        todo.setAttribute('id',i);
+        const todo = document.getElementById(i);
 
         const check = document.createElement('button');
         check.setAttribute('id','todocheck');
@@ -93,8 +94,7 @@ const todolist = (() => {
 
     const _todoNameAndDate = (i, project) => {
 
-        const todo = document.createElement('div');
-        todo.setAttribute('id',i);
+        const todo = document.getElementById(i);
 
         const name = document.createElement('p');
         name.setAttribute('class', 'todo-name');

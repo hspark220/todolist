@@ -33,6 +33,10 @@ const todoAPI = (() => {
         return todo.name;
     }
 
+    const getProject = todo => {
+        return todo.project;
+    }
+
     const getDate = todo => {
         return todo.dueDate;
     }
@@ -66,7 +70,7 @@ const todoAPI = (() => {
         //create
         addTodo,
         //read
-        getTodo, getLength, getProjectList, getName, getDate, getStatus,
+        getTodo, getLength, getProjectList, getName, getProject, getDate, getStatus,
         //update
         updateTodo, toggleStatus, 
         //delete
