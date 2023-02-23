@@ -29,7 +29,7 @@ const todolist = (() => {
         }
     }
 
-    const _refreshList = projectName => {
+    const refreshList = projectName => {
         const todolistDiv = document.querySelector('.todolist');
         const oldList = document.querySelector('.list');
         todolistDiv.removeChild(oldList);
@@ -49,11 +49,8 @@ const todolist = (() => {
         const add = document.createElement('button');
         add.setAttribute('id','addtodo');
         add.addEventListener('click', (e) => {
-            //dummy add at the moment...
-            const todo1 = todo(`todo ${todoAPI.getLength(projectName)}`,projectName,'dueDate','priorty',false);
-            todoAPI.addTodo(todo1);
             addEditTodo.addTodo(projectName);
-            _refreshList(projectName);
+            refreshList(projectName);
         });
 
         const label = document.createElement('label');
@@ -96,7 +93,7 @@ const todolist = (() => {
         remove.setAttribute('id','todoremove');
         remove.addEventListener('click', (e) => {
             todoAPI.removeTodo(i, project[i]);
-            _refreshList(projectName);
+            refreshList(projectName);
         });
 
         todo.append(check, remove);
@@ -117,7 +114,7 @@ const todolist = (() => {
         todo.append(name, date);
     }
 
-    return {printProject}
+    return {printProject, refreshList}
 
 })();
 

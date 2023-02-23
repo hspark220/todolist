@@ -1,9 +1,15 @@
 import projectlist from "./projectlist";
+import todo from "./todo";
 
 
 const todoAPI = (() => {
 
     //create
+    const makeTodo = (name, project, dueDate, priorty) => {
+        const todo1 = todo(name, project, dueDate, priorty, false);
+        addTodo(todo1);
+    }
+
     const addTodo = (todo) => {
         const project = projectlist.getProject(todo.project);
 
@@ -68,7 +74,7 @@ const todoAPI = (() => {
 
     return {
         //create
-        addTodo,
+        addTodo, makeTodo,
         //read
         getTodo, getLength, getProjectList, getName, getProject, getDate, getStatus,
         //update

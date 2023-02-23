@@ -17,7 +17,6 @@
     display: flex;
     flex-direction: column;
 }
-
 #addtodo {
     background-image: url(../icons/add.svg);
     background-color: white;
@@ -26,6 +25,9 @@
     border: none;
     border-radius: 50%;
     
+}
+#addtodo:hover {
+    cursor: pointer;
 }
 
 
@@ -86,4 +88,12 @@
 #todoremove:hover {
     background-image: url(../icons/delete-outline.svg);
     cursor: pointer;
+}
+
+
+/* 
+addDiv
+*/
+.add-div {
+    
 }
