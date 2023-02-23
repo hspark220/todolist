@@ -1,12 +1,13 @@
 import './todolist.css'
 import todo from '../todo/todo';
 import todoAPI from '../todo/todoAPI';
+import project from '../todo/project';
 
 //FIX THE CREATETODOBUTTONS AND TODONAMESANDDATE
 const todolist = (() => {
 
     const printProject = projectName => {
-        _createTitle('some title');
+        _createTitle(`Project: ${projectName}`);
         _createAddButton(projectName);
         _createListDiv();
         _printList(projectName);
@@ -41,16 +42,25 @@ const todolist = (() => {
 
     const _createAddButton = projectName => {
         const todolistDiv = document.querySelector('.todolist');
+        const addButtonDiv = document.createElement('div');
+        addButtonDiv.setAttribute('class','add-button');
+
         const add = document.createElement('button');
         add.setAttribute('id','addtodo');
         add.addEventListener('click', (e) => {
             //dummy add at the moment...
-            const todo1 = todo('name',projectName,'dueDate','priorty',false);
+            const todo1 = todo(`todo ${todoAPI.getLength(projectName)}`,projectName,'dueDate','priorty',false);
             todoAPI.addTodo(todo1);
+            //_addTodo(projectName)
             _refreshList(projectName);
         });
+
+        const label = document.createElement('label');
+        label.setAttribute('for','addtodo');
+        label.innerHTML = 'add a todo';
         
-        todolistDiv.append(add);
+        addButtonDiv.append(add, label);
+        todolistDiv.append(addButtonDiv);
     }
 
     const _createTitle = (titleName) => {

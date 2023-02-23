@@ -1,0 +1,88 @@
+:root {
+    --icon-color: #a1a1aa;
+
+}
+
+.todolist {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.todolist-title {
+    margin: 0;
+}
+
+.add-button {
+    display: flex;
+    flex-direction: column;
+}
+
+#addtodo {
+    background-image: url(../icons/add.svg);
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    
+}
+
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.list > * {
+    display: grid;
+    grid-template: 15px 10px / 30px 1fr 30px;
+    grid-template-areas:
+    "check name delete"
+    "check duedate delete";
+    align-items: center;
+    column-gap: 0.5rem;
+    row-gap: 5px;
+}
+.list > * p {
+    margin: 0;
+    padding: 0;
+}
+.list > * button {
+    height: 100%;
+}
+
+#todocheck {
+    grid-area: check;
+    height: 80%;
+    width: 80%;
+    place-self: center;
+    border-radius: 50%;
+    border: solid 1px var(--icon-color);
+    background-color: white;
+}
+#todocheck:hover {
+    background-color: var(--icon-color);
+}
+
+.todo-name {
+    grid-area: name;
+    font-size: 1.1rem;
+}
+
+.todo-date {
+    grid-area: duedate;
+    font-size: 0.8rem;
+}
+
+#todoremove {
+    grid-area: delete;
+    background-image: url(../icons/delete.svg);
+    background-color: white;
+    border: none;
+}
+#todoremove:hover {
+    background-image: url(../icons/delete-outline.svg);
+    cursor: pointer;
+}
