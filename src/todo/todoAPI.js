@@ -49,11 +49,11 @@ const todoAPI = (() => {
     const updateTodo = (index, todo) => {
         const project = projectlist.getProject(todo.project);
         project[index] = todo;
-        projectlist.updateProject(project);
+        projectlist.updateProject(todo.project, project);
     }
 
 
-    const toggleStatus = (index, todo) => {
+    const toggleStatus = (index, todo) => {  
         todo.status = !todo.status;
         updateTodo(index, todo);
     }

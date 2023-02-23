@@ -2,6 +2,7 @@ import './todolist.css'
 import todo from '../todo/todo';
 import todoAPI from '../todo/todoAPI';
 import project from '../todo/project';
+import addEditTodo from './addEditTodo.js';
 
 //FIX THE CREATETODOBUTTONS AND TODONAMESANDDATE
 const todolist = (() => {
@@ -51,7 +52,7 @@ const todolist = (() => {
             //dummy add at the moment...
             const todo1 = todo(`todo ${todoAPI.getLength(projectName)}`,projectName,'dueDate','priorty',false);
             todoAPI.addTodo(todo1);
-            //_addTodo(projectName)
+            addEditTodo.addTodo(projectName);
             _refreshList(projectName);
         });
 
@@ -84,8 +85,11 @@ const todolist = (() => {
 
         const check = document.createElement('button');
         check.setAttribute('id','todocheck');
+        check.style.backgroundColor = todoAPI.getStatus(project[i]) ? 'var(--icon-color)' : 'white';
+
         check.addEventListener('click',  (e) => {
             todoAPI.toggleStatus(i, project[i]);
+            check.style.backgroundColor = todoAPI.getStatus(project[i]) ? 'var(--icon-color)' : 'white';
         });
 
         const remove = document.createElement('button');

@@ -28,7 +28,8 @@ const project = (() => {
     const updateTodo = (index, todo) => {
         const project = projectlist.getProject(todo.project);
         project[index] = todo;
-        projectlist.updateProject(project);
+        projectlist.updateProject(todo.project, project);
+        console.log(projectlist.getProject(todo.project));
     }
 
     return { addTodo, getTodo, removeTodo, updateTodo}

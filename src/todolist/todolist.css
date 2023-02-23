@@ -64,6 +64,7 @@
 }
 #todocheck:hover {
     background-color: var(--icon-color);
+    cursor: pointer;
 }
 
 .todo-name {
