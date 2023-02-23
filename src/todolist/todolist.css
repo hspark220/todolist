@@ -95,5 +95,41 @@
 addDiv
 */
 .add-div {
+    border: solid 1px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 1rem;
+
+    display: grid;
+    grid-template: repeat(2, 50px) / 110px 80px 60px 70px;
+    grid-template-areas:
+    "name name name name"
+    "date priorty cancel submit";
+
+    gap: 0.3rem;
+}
+
+#name-input {
+    grid-area: name;
+}
+
+#date-input {
+    grid-area: date;
+}
+
+.priorty-inputs {
+    grid-area: priorty;
+}
+
+#cancel-button {
+    grid-area: cancel;
     
 }
+
+#submit-button {
+    grid-area: submit;
+}
+
