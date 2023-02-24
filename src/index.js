@@ -1,6 +1,7 @@
-import todo from "./todo/todo";
-import project from "./todo/project";
-import projectlist from "./todo/projectlist";
+import './style.css';
 import todolist from "./todolist/todolist";
+import projects from "./project/projects.js";
+
 
 todolist.printProject('two');
+projects.printProjects();

@@ -1,3 +1,4 @@
+import project from "../project/projects";
 import projectlist from "./projectlist";
 import todo from "./todo";
 
@@ -31,7 +32,7 @@ const todoAPI = (() => {
         return projectlist.getProject(projectName).length;
     }
 
-    const getProjectList = (projectName) => {
+    const getProject = (projectName) => {
         return projectlist.getProject(projectName);
     }
 
@@ -39,7 +40,7 @@ const todoAPI = (() => {
         return todo.name;
     }
 
-    const getProject = todo => {
+    const getProjectName = todo => {
         return todo.project;
     }
 
@@ -53,6 +54,10 @@ const todoAPI = (() => {
 
     const getStatus = todo => {
         return todo.status;
+    }
+
+    const getProjectList = () => {
+        return projectlist.getProjectList();
     }
 
     // updaters?
@@ -80,7 +85,7 @@ const todoAPI = (() => {
         //create
         addTodo, makeTodo,
         //read
-        getTodo, getLength, getProjectList, getName, getProject, getDate, getPriorty, getStatus,
+        getTodo, getLength, getProject, getProjectList, getName, getProjectName, getDate, getPriorty, getStatus,
         //update
         updateTodo, toggleStatus, 
         //delete

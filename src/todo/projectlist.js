@@ -55,8 +55,12 @@ const projectlist = (() => {
         storage.storeProjects(list);
     }
 
+    const getProjectList = () => {
+        return storage.retrieveNames();
+    }
+
     return {
-        addProject, getProject, removeProject, updateProject
+        addProject, getProject, getProjectList, removeProject, updateProject
     }
 })();
 

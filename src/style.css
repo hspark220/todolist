@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,900&display=swap');
-
+/* 
 * {
     font-family: Roboto, san-serif;
-}
+} */
 
 /* 
 template layout
@@ -18,11 +18,14 @@ body {
 
 .projects {
     grid-area: project;
-    border: solid;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
 }
 .todolist {
     grid-area: todolist;
-    border: solid;
+    border: 1px solid;
+    padding: 1.5rem;
 }
 
 

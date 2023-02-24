@@ -1,10 +1,7 @@
 import './todolist.css'
-import todo from '../todo/todo';
 import todoAPI from '../todo/todoAPI';
-import project from '../todo/project';
 import addEditTodo from './addEditTodo.js';
 
-//FIX THE CREATETODOBUTTONS AND TODONAMESANDDATE
 const todolist = (() => {
 
     const printProject = projectName => {
@@ -18,7 +15,7 @@ const todolist = (() => {
         const list = document.querySelector('.list');
 
         const length = todoAPI.getLength(projectName);
-        const project = todoAPI.getProjectList(projectName);
+        const project = todoAPI.getProject(projectName);
         
         for (let i = 0; i < length; i++) {
             const todo = document.createElement('div');
