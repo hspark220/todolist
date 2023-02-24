@@ -25,7 +25,7 @@ const todolist = (() => {
             todo.setAttribute('id',i);
             list.append(todo);
             _createTodoButtons(i, project, projectName);
-            _todoNameAndDate(i, project);
+            _todoNameAndDate(i, project, projectName);
         }
     }
 
@@ -50,7 +50,6 @@ const todolist = (() => {
         add.setAttribute('id','addtodo');
         add.addEventListener('click', (e) => {
             addEditTodo.addTodo(projectName);
-            refreshList(projectName);
         });
 
         const label = document.createElement('label');
@@ -99,9 +98,12 @@ const todolist = (() => {
         todo.append(check, remove);
     }
 
-    const _todoNameAndDate = (i, project) => {
+    const _todoNameAndDate = (i, project, projectName) => {
 
         const todo = document.getElementById(i);
+
+        const todoContent = document.createElement('div');
+        todoContent.setAttribute('class','todo-content');
 
         const name = document.createElement('p');
         name.setAttribute('class', 'todo-name');
@@ -111,7 +113,12 @@ const todolist = (() => {
         date.setAttribute('class','todo-date');
         date.innerHTML = `${todoAPI.getDate(project[i])}`;
 
-        todo.append(name, date);
+        todo.append(todoContent);
+        todoContent.append(name, date);
+
+        todoContent.addEventListener('click', (e) => {
+            addEditTodo.editTodo(i, project, projectName);
+        })
     }
 
     return {printProject, refreshList}
