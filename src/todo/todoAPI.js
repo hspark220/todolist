@@ -20,6 +20,10 @@ const todoAPI = (() => {
         projectlist.updateProject(todo.project, project);
     }
 
+    const addProject = projectName => {
+        projectlist.addProject(projectName);
+    }
+
     //read
     const getTodo = todo => {
         const project = projectlist.getProject(todo.project);
@@ -68,7 +72,7 @@ const todoAPI = (() => {
     }
 
 
-    const toggleStatus = (index, todo) => {  
+    const toggleStatus = (index, todo) => {
         todo.status = !todo.status;
         updateTodo(index, todo);
     }
@@ -79,15 +83,15 @@ const todoAPI = (() => {
         let project = projectlist.getProject(todo.project);
         project.splice(index, 1)
         projectlist.updateProject(todo.project, project);
-    }   
+    }
 
     return {
         //create
-        addTodo, makeTodo,
+        addTodo, makeTodo, addProject,
         //read
         getTodo, getLength, getProject, getProjectList, getName, getProjectName, getDate, getPriorty, getStatus,
         //update
-        updateTodo, toggleStatus, 
+        updateTodo, toggleStatus,
         //delete
         removeTodo,
     }
