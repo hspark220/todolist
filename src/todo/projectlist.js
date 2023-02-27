@@ -32,13 +32,23 @@ const projectlist = (() => {
         return projects[index];
     }
 
+    const getProjects = () => {
+        const projects = storage.retrieveProjects();
+        return projects;
+    }
+
     const removeProject = (projectName) => {
         const list = storage.retrieveProjects();
         const nameList = storage.retrieveNames();
 
         const index = nameList.indexOf(projectName);
-        nameList.slice(index);
-        list.slice(index);
+        if (index != -1) {
+            nameList.splice(index,1);
+            list.splice(index,1);
+        } else {
+            console.log('no project?');
+        }
+        
 
         storage.storeProjects(list);
         storage.storeNames(nameList);
@@ -60,7 +70,7 @@ const projectlist = (() => {
     }
 
     return {
-        addProject, getProject, getProjectList, removeProject, updateProject
+        addProject, getProject, getProjects, getProjectList, removeProject, updateProject
     }
 })();
 

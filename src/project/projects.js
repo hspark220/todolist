@@ -6,21 +6,36 @@ const projects = (() => {
 
     const _printProjectList = () => {
         const projectsDiv = document.querySelector('.projects');
-        const projectDiv = document.createElement('div');
-        projectDiv.setAttribute('class','project-list');
+        const projectListDiv = document.createElement('div');
+        projectListDiv.setAttribute('class','project-list');
 
         const projectList = todoAPI.getProjectList();
-        projectsDiv.append(projectDiv);
+        projectsDiv.append(projectListDiv);
 
         for (let i = 0; i < projectList.length; i++) {
             //add clickable projects?
+            const projectDiv = document.createElement('div');
+            projectDiv.setAttribute('class','project');
+            projectDiv.setAttribute('id',`project${i}`);
+
             const projectName = document.createElement('p');
+            projectName.setAttribute('class','project-name');
             projectName.append(projectList[i]);
-            projectDiv.append(projectName);
+
+            const removeProject = document.createElement('button');
+            removeProject.setAttribute('class','remove-project');
+
+            projectDiv.append(projectName, removeProject);
+            projectListDiv.append(projectDiv);
 
             projectName.addEventListener('click', (e) => {
                 todolist.printProject(projectList[i]);
-            })
+            });
+
+            removeProject.addEventListener('click', (e) => {
+                todoAPI.removeProject(projectList[i]);
+                _refreshList();
+            });
 
 
         }
@@ -30,19 +45,22 @@ const projects = (() => {
     const _addProjectButton = () => {
         const projectsDiv = document.querySelector('.projects');
         const addProjectBtn = document.createElement('button');
+        addProjectBtn.setAttribute('id','add-project');
 
         projectsDiv.append(addProjectBtn);
 
         addProjectBtn.addEventListener('click', (e) => {
+            addProjectBtn.disabled = true;
             _addProjectForm();
-            //add project to the list
-            //reprint the projectlist?
             
         });
+
 
     }
 
     const _addProjectForm = () => {
+        const addProjectBtn = document.querySelector('#add-project')
+
         const projectsDiv = document.querySelector('.projects');
         const projectsForm = document.createElement('form');
         projectsForm.setAttribute('class','project-form');
@@ -56,6 +74,8 @@ const projects = (() => {
         projectSubmit.setAttribute('id','project-form');
         projectSubmit.addEventListener('click', (e) => {
             todoAPI.addProject(projectInput.value);
+            projectsForm.remove();
+            addProjectBtn.disabled = false;
             _refreshList();
         })
 
@@ -65,9 +85,8 @@ const projects = (() => {
 
     const _refreshList = () => {
         const projectList = document.querySelector('.project-list');
-        const projectForm = document.querySelector('.project-form');
         projectList.remove();
-        projectForm.remove();
+        
         _printProjectList();
     }
 

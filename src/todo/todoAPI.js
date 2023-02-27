@@ -81,8 +81,18 @@ const todoAPI = (() => {
     //delete
     const removeTodo = (index, todo) => {
         let project = projectlist.getProject(todo.project);
-        project.splice(index, 1)
+        project.splice(index, 1);
         projectlist.updateProject(todo.project, project);
+    }
+
+    const removeProject = (projectName) => {
+        projectlist.removeProject(projectName);
+        // const projectNames = projectlist.getProjectList();
+        // const projects = projectlist.getProjects();
+        // index = projectNames.indexOf(projectName);
+        // projects.splice(index,1);
+        
+
     }
 
     return {
@@ -93,7 +103,7 @@ const todoAPI = (() => {
         //update
         updateTodo, toggleStatus,
         //delete
-        removeTodo,
+        removeTodo, removeProject
     }
 })();
 

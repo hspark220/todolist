@@ -1,3 +1,40 @@
-.project-list > *:hover {
+.projects {
+    padding: 1rem;
+}
+
+#add-project {
+    background-image: url(../icons/add.svg);
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+
+    padding: 0;
+}
+#add-project:hover {
+    cursor: pointer;
+}
+
+.project {
+    display: grid;
+    grid-template:30px / 1fr 30px;
+    grid-template-areas:
+    "name delete";
+    align-items: center;
+}
+.project-name {
+    grid-area: name;
+}
+.remove-project {
+    grid-area: delete;
+    height: 100%;
+    background-image: url(../icons/delete.svg);
+    background-color: white;
+    border: none;
+}
+
+
+.project > *:hover {
     cursor: pointer;
 }
