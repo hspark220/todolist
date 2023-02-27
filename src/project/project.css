@@ -43,3 +43,9 @@
 .project > *:hover {
     cursor: pointer;
 }
+
+.project-form {
+    display: grid;
+    grid-template-columns: 1fr 50px;
+}
+

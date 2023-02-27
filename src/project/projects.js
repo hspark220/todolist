@@ -8,9 +8,11 @@ const projects = (() => {
         const projectsDiv = document.querySelector('.projects');
         const projectListDiv = document.createElement('div');
         projectListDiv.setAttribute('class','project-list');
+        projectsDiv.append(projectListDiv);
+        _addProjectButton();
 
         const projectList = todoAPI.getProjectList();
-        projectsDiv.append(projectListDiv);
+        
 
         for (let i = 0; i < projectList.length; i++) {
             //add clickable projects?
@@ -38,7 +40,7 @@ const projects = (() => {
             });
         }
 
-        _addProjectButton();
+        
 
     }
 
@@ -72,6 +74,7 @@ const projects = (() => {
         const projectSubmit = document.createElement('input');
         projectSubmit.setAttribute('type','button');
         projectSubmit.setAttribute('id','project-form');
+        projectSubmit.value = 'add';
         projectSubmit.addEventListener('click', (e) => {
             todoAPI.addProject(projectInput.value);
             projectsForm.remove();
