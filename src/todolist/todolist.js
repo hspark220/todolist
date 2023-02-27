@@ -10,7 +10,7 @@ const todolist = (() => {
             _clearList();
         }
 
-        _createTitle(`Project: ${projectName}`);
+        _createTitle(`${projectName}`);
         _createAddButton(projectName);
         _createListDiv();
         _printList(projectName);

@@ -36,14 +36,14 @@ const projects = (() => {
                 todoAPI.removeProject(projectList[i]);
                 _refreshList();
             });
-
-
         }
+
+        _addProjectButton();
 
     }
 
     const _addProjectButton = () => {
-        const projectsDiv = document.querySelector('.projects');
+        const projectsDiv = document.querySelector('.project-list');
         const addProjectBtn = document.createElement('button');
         addProjectBtn.setAttribute('id','add-project');
 
@@ -92,7 +92,10 @@ const projects = (() => {
 
     const printProjects = () => {
         const projectsDiv = document.querySelector('.projects');
-        _addProjectButton();
+        const projectTitle = document.createElement('h3');        
+        projectTitle.setAttribute('class','project-title');
+        projectTitle.append('Projects');
+        projectsDiv.append(projectTitle);
         _printProjectList();
 
     }
