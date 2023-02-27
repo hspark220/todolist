@@ -5,6 +5,11 @@ import addEditTodo from './addEditTodo.js';
 const todolist = (() => {
 
     const printProject = projectName => {
+
+        if (document.querySelector('.list')) {
+            _clearList();
+        }
+
         _createTitle(`Project: ${projectName}`);
         _createAddButton(projectName);
         _createListDiv();
@@ -116,6 +121,16 @@ const todolist = (() => {
         todoContent.addEventListener('click', (e) => {
             addEditTodo.editTodo(i, project, projectName);
         })
+    }
+
+    const _clearList = () => {
+        const todolistTitle = document.querySelector('.todolist-title');
+        const todolistAddButton = document.querySelector('.add-button');
+        const todolistList = document.querySelector('.list');
+
+        todolistTitle.remove();
+        todolistAddButton.remove();
+        todolistList.remove();
     }
 
     return {printProject, refreshList}

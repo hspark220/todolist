@@ -75,6 +75,9 @@
     height: 100%;
     width: 100%;
 }
+.todo-content:hover {
+    cursor: pointer;
+}
 
 .todo-name {
     font-size: 1.1rem;
@@ -113,8 +116,10 @@ addDiv
     grid-template-areas:
     "name name name name"
     "date priorty cancel submit";
-
     gap: 0.3rem;
+
+    background-color: white;
+
 }
 
 #name-input {
