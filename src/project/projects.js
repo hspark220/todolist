@@ -31,12 +31,44 @@ const projects = (() => {
         const projectsDiv = document.querySelector('.projects');
         const addProjectBtn = document.createElement('button');
 
+        projectsDiv.append(addProjectBtn);
+
         addProjectBtn.addEventListener('click', (e) => {
+            _addProjectForm();
             //add project to the list
-            //print the projectlist?
+            //reprint the projectlist?
             
         });
 
+    }
+
+    const _addProjectForm = () => {
+        const projectsDiv = document.querySelector('.projects');
+        const projectsForm = document.createElement('form');
+        projectsForm.setAttribute('class','project-form');
+
+        const projectInput = document.createElement('input');
+        projectInput.setAttribute('id','project-input');
+        projectInput.setAttribute('type','text');
+
+        const projectSubmit = document.createElement('input');
+        projectSubmit.setAttribute('type','button');
+        projectSubmit.setAttribute('id','project-form');
+        projectSubmit.addEventListener('click', (e) => {
+            todoAPI.addProject(projectInput.value);
+            _refreshList();
+        })
+
+        projectsForm.append(projectInput, projectSubmit);
+        projectsDiv.append(projectsForm);
+    }
+
+    const _refreshList = () => {
+        const projectList = document.querySelector('.project-list');
+        const projectForm = document.querySelector('.project-form');
+        projectList.remove();
+        projectForm.remove();
+        _printProjectList();
     }
 
     const printProjects = () => {
