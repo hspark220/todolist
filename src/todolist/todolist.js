@@ -119,25 +119,26 @@ const todolist = (() => {
         let priortyBorder = 'var(--icon-color)';
         console.log(todoAPI.getPriorty(project[i]));
         if (todoAPI.getPriorty(project[i]) === 'low') {
-            priortyColor = '#bbf7d0';
-            priortyBorder = '#22c55e';
+            priortyColor = '#f0fdf4';
+            priortyBorder = '#bbf7d0';
         } else if (todoAPI.getPriorty(project[i]) === 'medium') {
-            priortyColor = '#fde68a';
-            priortyBorder = '#fbbf24';
+            priortyColor = '#fffbeb';
+            priortyBorder = '#fde68a';
         } else if (todoAPI.getPriorty(project[i]) === 'high') {
             
-            priortyColor = '#fecaca';
-            priortyBorder = '#f87171';
+            priortyColor = '#fef2f2';
+            priortyBorder = '#fecaca';
         }
         
         const check = document.createElement('button');
         check.setAttribute('id','todocheck');
-        check.style.borderColor = priortyBorder;
         check.style.backgroundColor = todoAPI.getStatus(project[i]) ? 'var(--icon-color)' : priortyColor;
+        check.style.borderColor = todoAPI.getStatus(project[i]) ? 'var(--icon-color)' : priortyBorder;
 
         check.addEventListener('click',  (e) => {
             todoAPI.toggleStatus(i, project[i]);
             check.style.backgroundColor = todoAPI.getStatus(project[i]) ? 'var(--icon-color)' : priortyColor;
+            check.style.borderColor = todoAPI.getStatus(project[i]) ? 'var(--icon-color)' : priortyBorder;
         });
 
         const remove = document.createElement('button');
