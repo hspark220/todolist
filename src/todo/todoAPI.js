@@ -83,10 +83,6 @@ const todoAPI = (() => {
         updateTodo(index, todo);
     }
 
-    const updateProject = (todo) => {
-
-    }
-
 
     //delete
     const removeTodo = (index, todo) => {

@@ -47,7 +47,6 @@ const todolist = (() => {
 
         for (let i = 0; i < projects.length; i++){
             const project = projects[i];
-            const projectName = projectNames[i];
             for (let j = 0; j < project.length; j++) {
                 const date = todoAPI.getDate(project[j])
                 if (date === today) {
@@ -58,7 +57,6 @@ const todolist = (() => {
                     _todoNameAndDate(j, project, 'today', id);
                     id++;
                 }
-                
             }
         }
 
@@ -72,7 +70,6 @@ const todolist = (() => {
         const list = document.createElement('div');
         list.setAttribute('class','list');
         todolistDiv.append(list);
-        console.log(projectName);
         if (projectName === 'today') {
             _printTodayList();
         } else {
@@ -139,7 +136,6 @@ const todolist = (() => {
     }
 
     const _todoNameAndDate = (i, project, projectName, id) => {
-
         const todo = document.getElementById(id);
 
         const todoContent = document.createElement('div');

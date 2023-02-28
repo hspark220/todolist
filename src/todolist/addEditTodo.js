@@ -98,6 +98,9 @@ const addEditTodo = (() => {
 
     const editTodo = (i, project, projectName) => {
         const todolist = document.querySelector('.todolist');
+        if (document.querySelector('.add-div')) {
+            _cancelSubmit();
+        }
         const addDiv = document.createElement('div');
         addDiv.setAttribute('class','add-div');
         todolist.append(addDiv);
