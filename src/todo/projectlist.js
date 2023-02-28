@@ -1,6 +1,12 @@
 import storage from "./storage";
 
 const projectlist = (() => {
+
+    const initializeProject = () => {
+        storage.storeProjects([]);
+        storage.storeNames([]);
+    }
+
     const addProject = (name) => {
         let list = storage.retrieveProjects();
         let nameList = storage.retrieveNames();
@@ -70,7 +76,12 @@ const projectlist = (() => {
     }
 
     return {
-        addProject, getProject, getProjects, getProjectList, removeProject, updateProject
+        initializeProject,
+        addProject, 
+        getProject, getProjects, getProjectList, 
+        removeProject, 
+        updateProject
+
     }
 })();
 

@@ -4,18 +4,40 @@ import todolist from "../todolist/todolist";
 
 const projects = (() => {
 
-    const _printProjectList = () => {
+    const _printList = () => {
         const projectsDiv = document.querySelector('.projects');
         const projectListDiv = document.createElement('div');
         projectListDiv.setAttribute('class','project-list');
         projectsDiv.append(projectListDiv);
-        _addProjectButton();
-
-        const projectList = todoAPI.getProjectList();
         
+        _addTodayList();
+        _addProjectList();
+        _addProjectButton();
+    }
 
+    const _addTodayList = () => {
+        const projectListDiv = document.querySelector('.project-list');
+
+        const projectDiv = document.createElement('div');
+        projectDiv.setAttribute('class','project');
+        projectDiv.setAttribute('id',`project-today`);
+
+        const projectName = document.createElement('p');
+        projectName.setAttribute('class','project-name');
+        projectName.append('today');
+
+        projectDiv.append(projectName);
+        projectListDiv.append(projectDiv);
+
+        projectName.addEventListener('click', (e) => {
+            todolist.printProject('today');
+        });
+    }
+
+    const _addProjectList = () => {
+        const projectListDiv = document.querySelector('.project-list');
+        const projectList = todoAPI.getProjectList();
         for (let i = 0; i < projectList.length; i++) {
-            //add clickable projects?
             const projectDiv = document.createElement('div');
             projectDiv.setAttribute('class','project');
             projectDiv.setAttribute('id',`project${i}`);
@@ -39,9 +61,6 @@ const projects = (() => {
                 _refreshList();
             });
         }
-
-        
-
     }
 
     const _addProjectButton = () => {
@@ -70,6 +89,7 @@ const projects = (() => {
         const projectInput = document.createElement('input');
         projectInput.setAttribute('id','project-input');
         projectInput.setAttribute('type','text');
+        projectInput.setAttribute('autocomplete','off');
 
         const projectSubmit = document.createElement('input');
         projectSubmit.setAttribute('type','button');
@@ -90,7 +110,7 @@ const projects = (() => {
         const projectList = document.querySelector('.project-list');
         projectList.remove();
         
-        _printProjectList();
+        _printList();
     }
 
     const printProjects = () => {
@@ -99,7 +119,8 @@ const projects = (() => {
         projectTitle.setAttribute('class','project-title');
         projectTitle.append('Projects');
         projectsDiv.append(projectTitle);
-        _printProjectList();
+        _printList();
+        todolist.printProject('today');
 
     }
 

@@ -4,7 +4,6 @@ import todo from "./todo";
 
 
 const todoAPI = (() => {
-
     //create
     const makeTodo = (name, project, dueDate, priorty) => {
         const todo1 = todo(name, project, dueDate, priorty, false);
@@ -40,6 +39,10 @@ const todoAPI = (() => {
         return projectlist.getProject(projectName);
     }
 
+    const getProjects = () => {
+        return projectlist.getProjects();
+    }
+
     const getName = todo => {
         return todo.name;
     }
@@ -61,6 +64,9 @@ const todoAPI = (() => {
     }
 
     const getProjectList = () => {
+        if (projectlist.getProjectList() === null) {
+            projectlist.initializeProject();
+        }
         return projectlist.getProjectList();
     }
 
@@ -87,19 +93,13 @@ const todoAPI = (() => {
 
     const removeProject = (projectName) => {
         projectlist.removeProject(projectName);
-        // const projectNames = projectlist.getProjectList();
-        // const projects = projectlist.getProjects();
-        // index = projectNames.indexOf(projectName);
-        // projects.splice(index,1);
-        
-
     }
 
     return {
         //create
         addTodo, makeTodo, addProject,
         //read
-        getTodo, getLength, getProject, getProjectList, getName, getProjectName, getDate, getPriorty, getStatus,
+        getTodo, getLength, getProject, getProjects, getProjectList, getName, getProjectName, getDate, getPriorty, getStatus,
         //update
         updateTodo, toggleStatus,
         //delete

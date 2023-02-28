@@ -10,26 +10,36 @@ template layout
 body {
     height: 100vh;
     display: grid;
-    grid-template: 100px / 300px 1fr;
+    grid-template: 50px / 300px 1fr;
     grid-template-areas:
     "header header"
     "project todolist";
+
+    margin: 0;
 }
 
 .header {
     grid-area: header;
+    background-color: #facc15;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    border-radius: 3px;
 }
 
 .projects {
     grid-area: project;
-    border: 1px solid;
     display: flex;
     flex-direction: column;
+
+    background-color: hsl(240, 7%, 97%);
+    border-radius: 3px;
+    
 }
 .todolist {
     grid-area: todolist;
-    border: 1px solid;
     padding: 1.5rem;
+    background-color:#f9fafb;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 3px;
 }
 
 

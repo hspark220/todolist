@@ -1,6 +1,7 @@
-import './todolist.css'
+import './todolist.css';
 import todoAPI from '../todo/todoAPI';
 import addEditTodo from './addEditTodo.js';
+import { format } from 'date-fns';
 
 const todolist = (() => {
 
@@ -13,12 +14,17 @@ const todolist = (() => {
         _createTitle(`${projectName}`);
         _createAddButton(projectName);
         _createListDiv();
-        _printList(projectName);
+        if (projectName === 'today') {
+            _printTodayList();
+        } else {
+            _printList(projectName);
+        }
+        
     }
 
     const _printList = projectName => {
         const list = document.querySelector('.list');
-
+        
         const length = todoAPI.getLength(projectName);
         const project = todoAPI.getProject(projectName);
         
@@ -26,9 +32,36 @@ const todolist = (() => {
             const todo = document.createElement('div');
             todo.setAttribute('id',i);
             list.append(todo);
-            _createTodoButtons(i, project, projectName);
-            _todoNameAndDate(i, project, projectName);
+            _createTodoButtons(i, project, projectName, i);
+            _todoNameAndDate(i, project, projectName, i);
         }
+    }
+
+    const _printTodayList = () => {
+        const list = document.querySelector('.list');
+        
+        const projects = todoAPI.getProjects();
+        const projectNames = todoAPI.getProjectList();
+        const today = format(new Date(), 'yyyy-MM-dd');
+        let id = 0;
+
+        for (let i = 0; i < projects.length; i++){
+            const project = projects[i];
+            const projectName = projectNames[i];
+            for (let j = 0; j < project.length; j++) {
+                const date = todoAPI.getDate(project[j])
+                if (date === today) {
+                    const todo = document.createElement('div');
+                    todo.setAttribute('id',id);
+                    list.append(todo);
+                    _createTodoButtons(j, project, projectName, id);
+                    _todoNameAndDate(j, project, projectName, id);
+                    id++;
+                }
+                
+            }
+        }
+
     }
 
     const refreshList = projectName => {
@@ -77,9 +110,9 @@ const todolist = (() => {
         todolistDiv.append(list);
     }
 
-    const _createTodoButtons = (i, project, projectName) => {
+    const _createTodoButtons = (i, project, projectName, id) => {
 
-        const todo = document.getElementById(i);
+        const todo = document.getElementById(id);
 
         const check = document.createElement('button');
         check.setAttribute('id','todocheck');
@@ -100,9 +133,9 @@ const todolist = (() => {
         todo.append(check, remove);
     }
 
-    const _todoNameAndDate = (i, project, projectName) => {
+    const _todoNameAndDate = (i, project, projectName, id) => {
 
-        const todo = document.getElementById(i);
+        const todo = document.getElementById(id);
 
         const todoContent = document.createElement('div');
         todoContent.setAttribute('class','todo-content');

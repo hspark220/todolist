@@ -22,7 +22,7 @@
 }
 #addtodo {
     background-image: url(../icons/add.svg);
-    background-color: white;
+    background-color: transparent;
     width: 50px;
     height: 50px;
     border: none;
@@ -93,11 +93,12 @@
 #todoremove {
     grid-area: delete;
     background-image: url(../icons/delete.svg);
-    background-color: white;
+    background-color: transparent;
     border: none;
 }
 #todoremove:hover {
     background-image: url(../icons/delete-outline.svg);
+    background-color: transparent;
     cursor: pointer;
 }
 
