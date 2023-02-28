@@ -115,14 +115,29 @@ const todolist = (() => {
     const _createTodoButtons = (i, project, projectName, id) => {
 
         const todo = document.getElementById(id);
-
+        let priortyColor = '#f9fafb';
+        let priortyBorder = 'var(--icon-color)';
+        console.log(todoAPI.getPriorty(project[i]));
+        if (todoAPI.getPriorty(project[i]) === 'low') {
+            priortyColor = '#bbf7d0';
+            priortyBorder = '#22c55e';
+        } else if (todoAPI.getPriorty(project[i]) === 'medium') {
+            priortyColor = '#fde68a';
+            priortyBorder = '#fbbf24';
+        } else if (todoAPI.getPriorty(project[i]) === 'high') {
+            
+            priortyColor = '#fecaca';
+            priortyBorder = '#f87171';
+        }
+        
         const check = document.createElement('button');
         check.setAttribute('id','todocheck');
-        check.style.backgroundColor = todoAPI.getStatus(project[i]) ? 'var(--icon-color)' : 'white';
+        check.style.borderColor = priortyBorder;
+        check.style.backgroundColor = todoAPI.getStatus(project[i]) ? 'var(--icon-color)' : priortyColor;
 
         check.addEventListener('click',  (e) => {
             todoAPI.toggleStatus(i, project[i]);
-            check.style.backgroundColor = todoAPI.getStatus(project[i]) ? 'var(--icon-color)' : 'white';
+            check.style.backgroundColor = todoAPI.getStatus(project[i]) ? 'var(--icon-color)' : priortyColor;
         });
 
         const remove = document.createElement('button');
@@ -153,6 +168,7 @@ const todolist = (() => {
         todoContent.append(name, date);
 
         todoContent.addEventListener('click', (e) => {
+            
             addEditTodo.editTodo(i, project, projectName);
         })
     }

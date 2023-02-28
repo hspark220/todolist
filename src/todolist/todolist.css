@@ -65,7 +65,7 @@
     place-self: center;
     border-radius: 50%;
     border: solid 1px var(--icon-color);
-    background-color: white;
+    background-color: black;
 }
 #todocheck:hover {
     background-color: var(--icon-color);
