@@ -21,6 +21,24 @@ const addEditTodo = (() => {
         nameInput.setAttribute('id','name-input');
         nameInput.setAttribute('autocomplete','off');
 
+        const projectInput = document.createElement('select');
+        projectInput.setAttribute('id','project-input');
+        projectInput.setAttribute('autocomplete','off');
+        projectInput.required = true;
+        const projectList = todoAPI.getProjectList();
+        const option = document.createElement('option');
+        projectInput.append(option);
+        for (let i = 0; i < projectList.length; i++) {
+            const option = document.createElement('option');
+            option.append(projectList[i]);
+            if (projectName === projectList[i]) {
+                option.selected = true;
+                
+            } 
+            projectInput.append(option);
+        }
+
+
         const dateInput = document.createElement('input');
         dateInput.setAttribute('type','date');
         dateInput.setAttribute('id','date-input');
@@ -65,7 +83,7 @@ const addEditTodo = (() => {
             } else {
                 priorty = null;
             }
-            const todo1 = todoAPI.makeTodo(nameInput.value, projectName, dateInput.value, priorty, false);
+            const todo1 = todoAPI.makeTodo(nameInput.value, projectInput.value, dateInput.value, priorty, false);
             todoAPI.addTodo(todo1);
             todolist.refreshList(projectName);
             _cancelSubmit();
@@ -73,7 +91,7 @@ const addEditTodo = (() => {
 
         const addDiv = document.querySelector('.add-div');
         
-        addDiv.append(nameInput, dateInput, priortyInputs, cancelBtn, submitBtn);
+        addDiv.append(nameInput, projectInput, dateInput, priortyInputs, cancelBtn, submitBtn);
         nameInput.focus();
 
     }
@@ -95,6 +113,23 @@ const addEditTodo = (() => {
         nameInput.setAttribute('id','name-input');
         nameInput.setAttribute('autocomplete','off');
         nameInput.value = todoAPI.getName(project[i]);
+
+        const projectInput = document.createElement('select');
+        projectInput.setAttribute('id','project-input');
+        projectInput.setAttribute('autocomplete','off');
+        projectInput.required = true;
+        const projectList = todoAPI.getProjectList();
+        const option = document.createElement('option');
+        projectInput.append(option);
+        for (let j = 0; j < projectList.length; j++) {
+            const option = document.createElement('option');
+            option.append(projectList[j]);
+            if (todoAPI.getProjectName(project[i]) === projectList[j]) {
+                option.selected = true;
+                
+            } 
+            projectInput.append(option);
+        }
 
         const dateInput = document.createElement('input');
         dateInput.setAttribute('type','date');
@@ -145,15 +180,22 @@ const addEditTodo = (() => {
             } else {
                 priorty = 'low';
             }
-            const todo1 = todoAPI.makeTodo(nameInput.value, projectName, dateInput.value, priorty, false);
-            todoAPI.updateTodo(i, todo1);
+            
+            const todo1 = todoAPI.makeTodo(nameInput.value, projectInput.value, dateInput.value, priorty, false);
+            if (projectName != projectInput.value) {
+                todoAPI.removeTodo(i, project[i]);
+                todoAPI.addTodo(todo1);
+            } else {
+                todoAPI.updateTodo(i, todo1);
+            }
+            
             todolist.refreshList(projectName);
             _cancelSubmit();
         });
 
         const addDiv = document.querySelector('.add-div');
         
-        addDiv.append(nameInput, dateInput, priortyInputs, cancelBtn, editBtn);
+        addDiv.append(nameInput, projectInput, dateInput, priortyInputs, cancelBtn, editBtn);
         nameInput.focus();
     }
 

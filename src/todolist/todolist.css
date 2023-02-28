@@ -147,3 +147,6 @@ addDiv
     grid-area: submit;
 }
 
+#edit-button {
+    grid-area: submit;
+}

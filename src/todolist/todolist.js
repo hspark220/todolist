@@ -54,8 +54,8 @@ const todolist = (() => {
                     const todo = document.createElement('div');
                     todo.setAttribute('id',id);
                     list.append(todo);
-                    _createTodoButtons(j, project, projectName, id);
-                    _todoNameAndDate(j, project, projectName, id);
+                    _createTodoButtons(j, project, 'today', id);
+                    _todoNameAndDate(j, project, 'today', id);
                     id++;
                 }
                 
@@ -72,8 +72,13 @@ const todolist = (() => {
         const list = document.createElement('div');
         list.setAttribute('class','list');
         todolistDiv.append(list);
-
-        _printList(projectName);
+        console.log(projectName);
+        if (projectName === 'today') {
+            _printTodayList();
+        } else {
+            _printList(projectName);
+        }
+        
     }
 
     const _createAddButton = projectName => {

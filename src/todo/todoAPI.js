@@ -83,6 +83,10 @@ const todoAPI = (() => {
         updateTodo(index, todo);
     }
 
+    const updateProject = (todo) => {
+
+    }
+
 
     //delete
     const removeTodo = (index, todo) => {
@@ -94,6 +98,8 @@ const todoAPI = (() => {
     const removeProject = (projectName) => {
         projectlist.removeProject(projectName);
     }
+
+    
 
     return {
         //create
