@@ -8,9 +8,15 @@ const projects = (() => {
         const projectsDiv = document.querySelector('.projects');
         const projectListDiv = document.createElement('div');
         projectListDiv.setAttribute('class','project-list');
+
+        
+
         projectsDiv.append(projectListDiv);
         
         _addTodayList();
+
+        
+
         _addProjectList();
         _addProjectButton();
     }
@@ -36,6 +42,12 @@ const projects = (() => {
 
     const _addProjectList = () => {
         const projectListDiv = document.querySelector('.project-list');
+        const projectTitle = document.createElement('p');        
+        projectTitle.setAttribute('class','project-title');
+        projectTitle.append('Projects');
+        projectListDiv.append(projectTitle);
+
+        
         const projectList = todoAPI.getProjectList();
         for (let i = 0; i < projectList.length; i++) {
             const projectDiv = document.createElement('div');
@@ -138,11 +150,6 @@ const projects = (() => {
     }
 
     const printProjects = () => {
-        const projectsDiv = document.querySelector('.projects');
-        const projectTitle = document.createElement('h3');        
-        projectTitle.setAttribute('class','project-title');
-        projectTitle.append('Projects');
-        projectsDiv.append(projectTitle);
         _printList();
         todolist.printProject('today');
 
