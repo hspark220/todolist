@@ -64,6 +64,8 @@ const projects = (() => {
     }
 
     const _addProjectButton = () => {
+        const project = document.querySelector('.projects');
+        
         const projectsDiv = document.querySelector('.project-list');
         const addProjectBtn = document.createElement('button');
         addProjectBtn.setAttribute('id','add-project');
@@ -73,13 +75,27 @@ const projects = (() => {
         addProjectBtn.addEventListener('click', (e) => {
             addProjectBtn.disabled = true;
             _addProjectForm();
+            project.addEventListener('click', _closeForm);
             
         });
+    }
 
+    const _closeForm = (e) => {
+        const project = document.querySelector('.projects');
+        const addButton = document.getElementById('add-project');
+        const projectsForm = document.querySelector('.project-form');
 
+        if (projectsForm === null) {
+            return;
+        }
+        if (e.target === project) {
+            projectsForm.remove();
+            addButton.disabled = false;
+        }
     }
 
     const _addProjectForm = () => {
+        const project = document.querySelector('.projects');
         const addProjectBtn = document.querySelector('#add-project')
 
         const projectsDiv = document.querySelector('.projects');
@@ -95,15 +111,23 @@ const projects = (() => {
         projectSubmit.setAttribute('type','button');
         projectSubmit.setAttribute('id','project-form');
         projectSubmit.value = 'add';
+
+        
+        
         projectSubmit.addEventListener('click', (e) => {
             todoAPI.addProject(projectInput.value);
             projectsForm.remove();
             addProjectBtn.disabled = false;
             _refreshList();
+            
         })
+
+        
+        
 
         projectsForm.append(projectInput, projectSubmit);
         projectsDiv.append(projectsForm);
+        
     }
 
     const _refreshList = () => {

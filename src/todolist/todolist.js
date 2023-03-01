@@ -117,7 +117,6 @@ const todolist = (() => {
         const todo = document.getElementById(id);
         let priortyColor = '#f9fafb';
         let priortyBorder = 'var(--icon-color)';
-        console.log(todoAPI.getPriorty(project[i]));
         if (todoAPI.getPriorty(project[i]) === 'low') {
             priortyColor = '#f0fdf4';
             priortyBorder = '#bbf7d0';
