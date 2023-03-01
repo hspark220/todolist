@@ -22,6 +22,19 @@ const todolist = (() => {
         
     }
 
+    const printDateRange = (date1, date2) => {
+        if (document.querySelector('.list')) {
+            _clearList();
+        }
+
+        _createTitle(`${date1} - ${date2}`);
+        _createAddButton('date-range');
+        _createListDiv();
+        _printDateRange(date1, date2);
+
+
+    }
+
     const _printList = projectName => {
         const list = document.querySelector('.list');
         
@@ -41,7 +54,6 @@ const todolist = (() => {
         const list = document.querySelector('.list');
         
         const projects = todoAPI.getProjects();
-        const projectNames = todoAPI.getProjectList();
         const today = format(new Date(), 'yyyy-MM-dd');
         let id = 0;
 
@@ -60,6 +72,28 @@ const todolist = (() => {
             }
         }
 
+    }
+
+    const _printDateRange = (date1, date2) => {
+        const list = document.querySelector('.list');
+
+        const projects = todoAPI.getProjects();
+        let id = 0;
+        
+        for (let i = 0; i < projects.length; i++){
+            const project = projects[i];
+            for (let j = 0; j < project.length; j++) {
+                const date = todoAPI.getDate(project[j])
+                if (date >= date1 && date <= date2) {
+                    const todo = document.createElement('div');
+                    todo.setAttribute('id',id);
+                    list.append(todo);
+                    _createTodoButtons(j, project, 'today', id);
+                    _todoNameAndDate(j, project, 'today', id);
+                    id++;
+                }
+            }
+        }
     }
 
     const refreshList = projectName => {
@@ -98,6 +132,7 @@ const todolist = (() => {
     }
 
     const _createTitle = (titleName) => {
+        
         const todolistDiv = document.querySelector('.todolist');
         const title = document.createElement('h3');
         title.setAttribute('class','todolist-title');
@@ -183,7 +218,7 @@ const todolist = (() => {
         todolistList.remove();
     }
 
-    return {printProject, refreshList}
+    return {printProject, refreshList, printDateRange}
 
 })();
 

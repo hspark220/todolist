@@ -14,7 +14,7 @@ const projects = (() => {
         projectsDiv.append(projectListDiv);
         
         _addTodayList();
-
+        _addDateRangeList();
         
 
         _addProjectList();
@@ -38,6 +38,36 @@ const projects = (() => {
         projectName.addEventListener('click', (e) => {
             todolist.printProject('today');
         });
+    }
+
+    const _addDateRangeList = () => {
+        const projectListDiv = document.querySelector('.project-list');
+
+        const dateRangeDiv = document.createElement('div');
+        dateRangeDiv.setAttribute('class','date-range');
+
+        const dateRangeName = document.createElement('p');
+        dateRangeName.setAttribute('class','date-range-name');
+        dateRangeName.append('date range');
+
+        const dateInput1 = document.createElement('input');
+        dateInput1.setAttribute('type','date');
+        dateInput1.setAttribute('id','date-input1');
+
+        const dateInput2 = document.createElement('input');
+        dateInput2.setAttribute('type','date');
+        dateInput2.setAttribute('id','date-input2');
+
+        dateRangeDiv.append(dateRangeName, dateInput1, dateInput2);
+
+        dateRangeName.addEventListener('click', (e) => {
+            if (dateInput1.value != '' && dateInput2.value != '') {
+                todolist.printDateRange(dateInput1.value, dateInput2.value);
+            }
+        });
+
+        projectListDiv.append(dateRangeDiv);
+
     }
 
     const _addProjectList = () => {
