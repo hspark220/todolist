@@ -51,3 +51,7 @@
     grid-template-columns: 1fr 50px;
 }
 
+.date-range-name:hover {
+    cursor: pointer;
+}
+
