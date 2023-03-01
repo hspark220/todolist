@@ -5,7 +5,7 @@ import todolist from "./todolist.js";
 const addEditTodo = (() => {
     const addTodo = projectName => {
         const todolist = document.querySelector('.todolist');
-        const addDiv = document.createElement('div');
+        const addDiv = document.createElement('form');
         addDiv.setAttribute('class','add-div');
         todolist.append(addDiv);
         _addForms(projectName);
@@ -93,6 +93,25 @@ const addEditTodo = (() => {
         
         addDiv.append(nameInput, projectInput, dateInput, priortyInputs, cancelBtn, submitBtn);
         nameInput.focus();
+
+        addDiv.addEventListener('keydown', (e) => {
+            if (e.key === "Enter") {
+                let priorty;
+            if (priortyMedium.checked) {
+                priorty = 'medium';
+            } else if (priortyHigh.checked) {
+                priorty = 'high';
+            } else if (priortyLow.checked) {
+                priorty = 'low';
+            } else {
+                priorty = null;
+            }
+            const todo1 = todoAPI.makeTodo(nameInput.value, projectInput.value, dateInput.value, priorty, false);
+            todoAPI.addTodo(todo1);
+            todolist.refreshList(projectName);
+            _cancelSubmit();
+            }
+        });
 
     }
 
@@ -200,6 +219,30 @@ const addEditTodo = (() => {
         
         addDiv.append(nameInput, projectInput, dateInput, priortyInputs, cancelBtn, editBtn);
         nameInput.focus();
+
+        addDiv.addEventListener('keydown',(e) => {
+            if (e.key === 'Enter') {
+                let priorty;
+                if (priortyMedium.checked) {
+                    priorty = 'medium';
+                } else if (priortyHigh.checked) {
+                    priorty = 'high';
+                } else {
+                    priorty = 'low';
+                }
+                
+                const todo1 = todoAPI.makeTodo(nameInput.value, projectInput.value, dateInput.value, priorty, false);
+                if (projectName != projectInput.value) {
+                    todoAPI.removeTodo(i, project[i]);
+                    todoAPI.addTodo(todo1);
+                } else {
+                    todoAPI.updateTodo(i, todo1);
+                }
+                
+                todolist.refreshList(projectName);
+                _cancelSubmit();
+            }
+        });
     }
 
     const _cancelSubmit = () => {

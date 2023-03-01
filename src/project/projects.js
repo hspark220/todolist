@@ -88,7 +88,6 @@ const projects = (() => {
             addProjectBtn.disabled = true;
             _addProjectForm();
             project.addEventListener('click', _closeForm);
-            
         });
     }
 
@@ -107,7 +106,6 @@ const projects = (() => {
     }
 
     const _addProjectForm = () => {
-        const project = document.querySelector('.projects');
         const addProjectBtn = document.querySelector('#add-project')
 
         const projectsDiv = document.querySelector('.projects');
@@ -134,11 +132,19 @@ const projects = (() => {
             
         })
 
-        
-        
+        projectsForm.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                todoAPI.addProject(projectInput.value);
+                projectsForm.remove();
+                addProjectBtn.disabled = false;
+                _refreshList();
+            }
+        })
 
         projectsForm.append(projectInput, projectSubmit);
         projectsDiv.append(projectsForm);
+
+        projectInput.focus();
         
     }
 
