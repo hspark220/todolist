@@ -37,6 +37,7 @@ const projects = (() => {
 
         projectName.addEventListener('click', (e) => {
             todolist.printProject('today');
+            _shadeWord(projectName);
         });
     }
 
@@ -47,7 +48,7 @@ const projects = (() => {
         dateRangeDiv.setAttribute('class','date-range');
 
         const dateRangeName = document.createElement('p');
-        dateRangeName.setAttribute('class','date-range-name');
+        dateRangeName.setAttribute('class','project-name date-range-name');
         dateRangeName.append('date range');
 
         const dateInput1 = document.createElement('input');
@@ -63,6 +64,7 @@ const projects = (() => {
         dateRangeName.addEventListener('click', (e) => {
             if (dateInput1.value != '' && dateInput2.value != '') {
                 todolist.printDateRange(dateInput1.value, dateInput2.value);
+                _shadeWord(dateRangeName);
             }
         });
 
@@ -96,6 +98,7 @@ const projects = (() => {
 
             projectName.addEventListener('click', (e) => {
                 todolist.printProject(projectList[i]);
+                _shadeWord(projectName);
             });
 
             removeProject.addEventListener('click', (e) => {
@@ -190,6 +193,27 @@ const projects = (() => {
         todolist.printProject('today');
 
     }
+
+    const _shadeWord = (element) => {
+        const projectList = document.querySelector('.project-list');
+        const projectListChildren = projectList.childNodes;
+
+        for (let i = 0; i < projectListChildren.length; i++) {
+            const project = projectListChildren[i];
+            
+            try {
+                project.firstChild.style.removeProperty('box-shadow');
+                console.log(project.firstChild);
+            } catch {
+                continue;
+            }
+        }
+
+        element.style.setProperty('box-shadow','inset 0 -0.4rem 0 #fcd34dda');
+        
+        
+    }
+    
 
     return {printProjects}
 
